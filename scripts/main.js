@@ -9,6 +9,6 @@ var Hades = {
     },
 
     init : function(){
-        this.generateMap(50,50);
+        this.generateMap(90,35);
     }
 };
