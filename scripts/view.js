@@ -1,15 +1,21 @@
 /**
  * Created by ties on 1-11-13.
+ * functies om de view te updaten
  */
 (function(ha){
     ha.view = {
-        updateZielenCount : function(zielenCount){
-            $('zielenCount').html(zielenCount);
+        updateSoulCount : function(soulCount){
+            $('#soulCount').html(soulCount);
         },
-        updateGeldCount : function(geldCount){
-            $('geldCount').html(geldCount);
+        updateMoneyCount : function(moneyCount){
+            $('#moneyCount').html(moneyCount);
+        },
+        getCellId : function(x,y){
+            return "cell_" + x + "_" + y;
+        },
+        makeBuilding : function(x,y,buildingClass){
+            $('#' + this.getCellId(x,y)).attr("class", "cell " + buildingClass);
         }
+
     };
-}(Hades));/**
- * Created by ties on 1-11-13.
- */
+}(Hades));

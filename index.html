@@ -11,15 +11,19 @@
     <script src="scripts/building.js"></script>
     <script src="scripts/soul.js"></script>
     <script src="scripts/money.js"></script>
+    <script src="scripts/view.js"></script>
     <script>
+        /**
+         * Javascript init
+         */
         Hades.init();
     </script>
     <div class="titleBar">
         <div>Project Hades</div>
         <div>
             <table>
-                <tr><td>Geld</td><td id="geldCount"></td></tr>
-                <tr><td>Zielen</td><td id="zielenCount""></td></tr>
+                <tr><td>Money</td><td><span id="moneyCount"></span></td></tr>
+                <tr><td>Souls</td><td><span id="soulCount"></span></td></tr>
             </table>
         </div>
 
@@ -33,5 +37,13 @@
     </div>
     <div class="grid" id="hadesgrid">
     </div>
+
+<script>
+    /**
+     * Na pagina reder uitvoeren
+     */
+    Hades.view.updateSoulCount(300);
+    Hades.view.updateMoneyCount(100);
+</script>
 </body>
 </html>
