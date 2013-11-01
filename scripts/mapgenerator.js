@@ -4,12 +4,13 @@
 (function(ha){
   ha.generateMap = function(xsize, ysize){
       var html = '<table>';
-      for(var col = 0; col < xsize; col++) {
-          for(var row = 0; row < ysize; row++) {
-              ha.view.makeBuilding(row, col, 'building');
+      for(var y = 0; y < ysize; y++) {
+          html += '<tr>';
+          for(var x = 0; x < xsize; x++) {
+              html += '<td id="'+ha.view.getCellId(x, y) + '" class="cell"></td>';
           }
+          html += '</tr>';
       }
-
       html += '</table>';
 
       $('#hadesgrid').append(html);
