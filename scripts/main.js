@@ -9,6 +9,33 @@ var Hades = {
     },
 
     init : function(){
-        this.generateMap(90,35);
+        var self = this;
+        self.generateMap(79,35);
+
+        $('.cell').each(function(i, cell){
+            $(cell).droppable({
+                accept : ".buildingMenu",
+                hoverClass : "cell_droppable",
+                drop : function(event, building){
+                    Hades.view.setBuilding($(event.target), $(building.draggable).attr("id"));
+                }
+            });
+        });
+        self.makeDraggable("moneyBuilding");
+        self.makeDraggable("soulBuilding");
+    },
+    makeDraggable : function(id){
+        $("#" + id).draggable({
+            snap: true,
+            distance : 5,
+            revert : "invalid",
+            revertDuration : 200,
+            zIndex : 10,
+            cursor : "pointer",
+            cursorAt: { left: 8, top : 8 },
+             helper: function(){
+                return $('<div style="border: 1px solid black;" class="building ' + id +'"></div>');
+            }
+        });
     }
 };

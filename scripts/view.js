@@ -13,8 +13,8 @@
         getCellId : function(x,y){
             return "cell_" + x + "_" + y;
         },
-        makeBuilding : function(x,y,buildingClass){
-            $('#' + this.getCellId(x,y)).attr("class", "cell " + buildingClass);
+        setBuilding : function(cell,buildingClass){
+            cell.attr("class", "cell " + buildingClass);
         }
 
     };
