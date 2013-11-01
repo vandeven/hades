@@ -7,5 +7,5 @@ Hades.building = function(){
     };
     this.destroy = function(){
         //Hades.map.remove(this);
-    }
+    };
 };
