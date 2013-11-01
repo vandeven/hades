@@ -1,4 +1,42 @@
+.titleBar{
+    width: 1800px;
+    height: 100px;
+    float: left;
+    border: 1px solid black;
+    position : absolute;
+}
+
+.buildings {
+    position : absolute;
+    top: 150px;
+    width: 200px;
+    height: 800px;
+    float: left;
+}
+
+.grid {
+    position : absolute;
+    left: 250px;
+    top: 150px;
+    width: 1500px;
+    height: 700px;
+    border: 1px solid black;
+}
+
 .cell {
     width: 16px;
     height: 16px;
+    background-color: green;
+}
+
+.geldGebouw {
+    background-color: yellow;
+}
+
+.zielGebouw {
+    background-color: red;
+}
+
+.building {
+    border: 1px solid black;
 }

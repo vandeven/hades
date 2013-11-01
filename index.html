@@ -11,12 +11,24 @@
     <script>
         Hades.init();
     </script>
-    Project Hades
-    <div>
-        <div>Buildings</div>
-        <div></div>
+    <div class="titleBar">
+        <div>Project Hades</div>
+        <div>
+            <table>
+                <tr><td>Geld</td><td id="geldCount"></td></tr>
+                <tr><td>Zielen</td><td id="zielenCount""></td></tr>
+            </table>
+        </div>
+
     </div>
-    <div id="hadesgrid">
+    <div class="buildings">
+        <div>Buildings</div>
+        <div>
+            <div class="building" id="geldGebouw">Geldgebouw <div class="cell geldGebouw" style="float: right;"></div></div>
+            <div class="building" id="zielGebouw">Zielgebouw <div class="cell zielGebouw" style="float: right;"></div></div>
+        </div>
+    </div>
+    <div class="grid" id="hadesgrid">
     </div>
 </body>
 </html>
