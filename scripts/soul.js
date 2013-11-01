@@ -3,7 +3,7 @@
  */
 Hades.soul = function(){
     this.inheritFrom = Hades.building;
-    this.inheritFrom();
+    this.inheritFrom(10);
     this.trigger = function(){
         Hades.counters.souls++;
     };

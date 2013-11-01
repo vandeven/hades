@@ -3,6 +3,15 @@
  */
 (function(ha){
   ha.generateMap = function(xsize, ysize){
-    console.log("blah");
+      var html = '<table>';
+      for(var col = 0; col < xsize; col++) {
+          for(var row = 0; row < ysize; row++) {
+              ha.view.makeBuilding(row, col, 'building');
+          }
+      }
+
+      html += '</table>';
+
+      $('#hadesgrid').append(html);
   };
 }(Hades));
