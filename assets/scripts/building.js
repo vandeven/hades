@@ -4,8 +4,9 @@
 (function(ha){
     ha.building = function(){
         var interval;
-        var moneyCost = 0, soulCost = 0;
-        var id = 0;
+        this.moneyCost = 0;
+        this.soulCost = 0;
+        this.id = 0;
 
         this.trigger = function(){
         };

@@ -109,6 +109,16 @@ var Hades = {
         }
         return null;
     },
+    getBuildingById : function(id){
+        if(id === Hades.moneyBuildingId){
+            return new Hades.money().init();
+        } else if(id === this.soulBuildingId){
+            return new Hades.soul().init();
+        } else if(id === this.buildingCrusherId){
+            return new Hades.crusher().init();
+        }
+        return null;
+    },
     buildBuilding : function(cell, buildingId, playerClass){
         var self = this;
         var cost = self.getBuildingCostById(buildingId);
@@ -123,6 +133,7 @@ var Hades = {
         this.decreaseMoney(cost);
 
         //Gebouw plaatsen
+        getBuildingById(buildingId);
         /*var cordinates = Hades.view.getCordinates(cell);
         var buildingAndPlayer = Hades.view.getBuildingAndPlayer(cell);
         self.hadesGrid.create({
