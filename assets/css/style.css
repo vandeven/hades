@@ -30,13 +30,25 @@
 .cell_droppable {
     background-color: pink;
 }
+.cell_player{
+    background-color: black;
+}
+.cell_opponent {
+    background-color: red;
+}
 
 .moneyBuilding {
-    background-color: yellow;
+    background-image: url("../images/lawyer.png");
+    background-repeat: no-repeat;
 }
 
 .soulBuilding {
-    background-color: red;
+    background-image: url("../images/hellaltar.png");
+    background-repeat: no-repeat;
+}
+
+.buildingCrusher {
+    background-color: darkorange;
 }
 
 .buildingMenu {
@@ -45,6 +57,10 @@
     width: 200px;
     height: 20px;
     cursor: pointer;
+}
+.buildingMenuDisabled {
+    background-color: grey;
+    cursor: default;
 }
 
 .building {
