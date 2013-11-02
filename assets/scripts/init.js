@@ -41,7 +41,7 @@
                 drop : function(event, building){
                     var buildingId = $(building.draggable).attr("id");
                     if(buildingId === Hades.buildingCrusherId){
-                        self.destroyBuilding($(event.target));
+                        Hades.destroyBuilding($(event.target));
                     }else {
                         var coordinates = Hades.view.getCordinates($(event.target));
                         self.grid.create({
@@ -121,18 +121,19 @@
         //Hades.view.updateBuildingCost(buildingId, cost);
     };
     ha.destroyBuilding = function(cell){
-        var self = this;
-        var building = self.getBuildingById(Hades.buildingCrusherId);
+        var coordinates = Hades.view.getCordinates(cell);
+        var building = Hades.grid.where({ x: coordinates[0], y: coordinates[1] })[0].building;
         var moneyCost = building.moneyCost;
         var soulCost = building.soulCost;
 
         if(Hades.counters.money < moneyCost || Hades.counters.souls < soulCost){
             return;
         }
+
         Hades.decreaseMoney(moneyCost);
         Hades.decreaseSouls(soulCost);
         building.destroy();
-        Hades.view.destroyBuilding(cell);
+        Hades.view.setBuilding(cell, "cell", "player");
     };
 }(Hades));
 
