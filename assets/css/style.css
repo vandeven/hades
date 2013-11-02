@@ -76,6 +76,6 @@
     float: right;
 }
 .cell_droppable {
-    background-color: pink;
-    background-image: none;
+    background-color: pink !important;
+    background-image: none !important;
 }

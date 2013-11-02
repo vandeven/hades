@@ -3,7 +3,7 @@
  */
 (function(ha){
   ha.generateMap = function(xsize, ysize){
-      var html = '<table class="field"';
+      var html = '<table';
       for(var y = 0; y < ysize; y++) {
           html += '<tr>';
           for(var x = 0; x < xsize; x++) {
