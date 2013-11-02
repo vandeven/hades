@@ -15,9 +15,9 @@
         };
         this.start = function(delay){
             timerId = setInterval(this.trigger, delay);
-        }
+        };
         this.destroy = function(){
-            debugger;
+            console.log("destroying a building");
             clearInterval(timerId);
             //Hades.map.remove(this);
         };

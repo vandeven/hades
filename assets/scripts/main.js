@@ -10,7 +10,10 @@ var Hades = {
     moneyBuildingId : "moneyBuilding",
     soulBuildingId : "soulBuilding",
     buildingCrusherId : "buildingCrusher",
-    buildings : [{ id : "moneyBuilding", name : "Lawyer", title : "Generates money for you"}, { id : "soulBuilding", name : "Soul Shrine", title : "Generates souls for you"}, { id : "buildingCrusher", name : "Unholy Tractor", title : "Destroys a building"}],
+    buildings : [
+        { id : "moneyBuilding", name : "Lawyer", title : "Generates money for you"},
+        { id : "soulBuilding", name : "Soul Shrine", title : "Generates souls for you"},
+        { id : "buildingCrusher", name : "Unholy Tractor", title : "Destroys a building"}],
 
     init : function(){
         "use strict";
@@ -84,7 +87,6 @@ var Hades = {
 
         var coordinates = Hades.view.getCordinates(cell);
 
-
         //controleer geld
         if(this.counters.money < building.moneyCost || this.counters.soul < building.soulCost){
             return;
@@ -99,11 +101,11 @@ var Hades = {
         //Controleer server
 
         //Geld afschrijven
-        //self.decreaseMoney(building.moneyCost);
-        //self.decreaseSouls(building.soulCost);
+        self.decreaseMoney(building.moneyCost);
+        self.decreaseSouls(building.soulCost);
 
         //Gebouw plaatsen
-        //building.start();
+        building.start();
 
 
         //View updaten
@@ -124,7 +126,6 @@ var Hades = {
         var building = Hades.getBuildingById(cellData.building);
         var cellId = Hades.view.getCellId(cellData.x, cellData.y);
         var cell = $("#" + cellId);
-        var building = Hades.getBuildingById(cellData.building);
 
         //Geld afschrijven
         Hades.decreaseMoney(building.moneyCost);
@@ -135,11 +136,16 @@ var Hades = {
     },
     destroyBuilding : function(cell){
         var self = this;
-        var cost = self.getBuildingCostById(Hades.buildingCrusherId);
-        if(Hades.counters.money < cost){
+        var building = self.getBuildingById(Hades.buildingCrusherId);
+        var moneyCost = building.moneyCost;
+        var soulCost = building.soulCost;
+
+        if(Hades.counters.money < moneyCost || Hades.counters.souls < soulCost){
             return;
         }
-        Hades.decreaseMoney(cost);
+        Hades.decreaseMoney(moneyCost);
+        Hades.decreaseSouls(soulCost);
+        building.destroy();
         Hades.view.destroyBuilding(cell);
     }
 };

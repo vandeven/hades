@@ -29,7 +29,7 @@
             html += '<div class="buildingMenu" id="' + buildingId +'" title="'+ buildingTitle +'">'+ buildingName +' <span id="' + buildingId +'Cost"></span><div class="'+ buildingId +' building"></div></div>';
         }
         menu.append(html);
-    }
+    };
     ha.makeDraggable = function(id){
         $("#" + id).draggable({
             distance : 0,
@@ -42,5 +42,5 @@
                 return $('<div style="border: 1px solid black;" class="building ' + id +'"></div>');
             }
         });
-    }
+    };
 }(Hades));
