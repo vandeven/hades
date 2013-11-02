@@ -98,22 +98,6 @@ var Hades = {
         self.view.setSoulCount(this.counters.souls);
         self.disableBuildings();
     },
-    getBuildingCostById : function(id){
-        if(id === Hades.moneyBuildingId){
-            return 10;
-        } else if(id === this.soulBuildingId){
-            return 50;
-        } else if(id === this.buildingCrusherId){
-            return 100;
-        }
-        return 0;
-    },
-    getBuildingSoulCostById : function(id){
-        if(id === this.buildingCrusherId){
-            return 1;
-        }
-        return 0;
-    },
     getBuildingById : function(id){
         if(id === Hades.moneyBuildingId){
             return new Hades.money().init();
