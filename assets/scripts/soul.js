@@ -7,6 +7,7 @@
         this.soulCost = 0;
         this.id = 2;
         this.name = "soulBuilding";
+        var self = this;
 
         this.init = function(){
             return this;

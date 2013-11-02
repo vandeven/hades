@@ -9,7 +9,7 @@
         //self.grid.on('remove', self.destroyBuildingEvent, self);
         //self.grid.forEach(self.placeOrUpdateBuildingAction);
 
-        self.generateMap(50,35);
+        self.generateMap(45,35);
         self.generateMenu();
         self.generateAdvert();
 
@@ -79,8 +79,8 @@
     ha.placeOrUpdateBuildingEvent = function( event ) {
         var cellData = event.attributes;
         if(cellData.x && cellData.y && cellData.building) {
-            var cell = Hades.grid.where({ x: cellData.x, y: cellData.y });
-            Hades.buildBuilding(cell[0], cellData.building, cellData.player);
+            var cell = Hades.grid.findWhere({ x: cellData.x, y: cellData.y });
+            Hades.buildBuilding(cell, cellData.building, cellData.player);
         } else {
             console.log(cellData);
         }
@@ -88,8 +88,8 @@
     ha.buildBuilding = function(cell, buildingId, playerClass){
         var self = this;
 
-        cell.building = self.getBuildingById(buildingId);
-      //  cell.building.cell = cell;
+        cell["building"] = self.getBuildingById(buildingId);
+        cell.building.cell = cell;
         //controleer geld
         if(self.counters.money < cell.building.moneyCost || self.counters.soul < cell.building.soulCost){
             return;

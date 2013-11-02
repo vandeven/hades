@@ -1,3 +1,7 @@
+.field {
+    background-image: url("../images/hellfire.jpg");
+    background-repeat: no-repeat;
+}
 .titleBar{
     width: 1800px;
     height: 100px;
@@ -33,12 +37,16 @@
 .cell {
     width: 16px;
     height: 16px;
+    background-color: lawngreen;
+    opacity: 0.7;
 }
 .cell_player{
     background-color: white;
+    opacity: 1;
 }
 .cell_opponent {
     background-color: red;
+    opacity: 1;
 }
 
 .moneyBuilding {
@@ -65,10 +73,6 @@
 .buildingMenuDisabled {
     background-color: grey;
     cursor: default;
-}
-.field {
-    background-image: url("../images/hellfire.jpg");
-    background-repeat: no-repeat;
 }
 .building {
     width: 16px;
