@@ -106,11 +106,7 @@
 
         var cellId = Hades.view.getCellId(cell.attributes.x, cell.attributes.y);
 
-        //Geld afschrijven
         if(cell.building){
-            Hades.decreaseMoney(cell.building.moneyCost);
-            Hades.decreaseSouls(cell.building.soulCost);
-
             Hades.view.setBuilding($("#" + cellId), cell.building.name, playerClass);
             Hades.view.updateBuildingCost(cell.building.name, cell.building.moneyCost, cell.building.soulCost);
         }
