@@ -80,7 +80,7 @@
         var cellData = event.attributes;
         if(cellData.x && cellData.y && cellData.building) {
             var cell = Hades.grid.where({ x: cellData.x, y: cellData.y });
-            Hades.buildBuilding(cell, cellData.building, cellData.player);
+            Hades.buildBuilding(cell[0], cellData.building, cellData.player);
         } else {
             console.log(cellData);
         }
@@ -104,15 +104,15 @@
         //Gebouw plaatsen
         cell.building.start();
 
-        var cellId = Hades.view.getCellId(cell.x, cell.y);
+        var cellId = Hades.view.getCellId(cell.attributes.x, cell.attributes.y);
 
         //Geld afschrijven
         if(cell.building){
             Hades.decreaseMoney(cell.building.moneyCost);
             Hades.decreaseSouls(cell.building.soulCost);
 
-            Hades.view.setBuilding($("#" + cellId), cell.building.name, cellData.player);
-            Hades.view.updateBuildingCost(cell.building.name, building.moneyCost, building.soulCost);
+            Hades.view.setBuilding($("#" + cellId), cell.building.name, playerClass);
+            Hades.view.updateBuildingCost(cell.building.name, cell.building.moneyCost, cell.building.soulCost);
         }
         //View updaten
         //Hades.view.setBuilding(cell, buildingId, playerClass);
