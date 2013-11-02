@@ -28,9 +28,6 @@
           attr = attr.replace(this.cellCSSClass);
           return attr.split(" ");
         },
-        destroyBuilding : function(cell){
-            cell.attr("class", "cell");
-        },
         enableBuilding : function(buildingId){
             var building = $("#" + buildingId);
             building.draggable("option", "disabled", false);

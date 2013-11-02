@@ -8,8 +8,7 @@
         this.x = 0;
         this.y = 0;
 
-        this.init = function(_building, _x, _y){
-            this.Building = _building;
+        this.init = function(_x, _y){
             this.x = _x;
             this.y = _y;
             return this;

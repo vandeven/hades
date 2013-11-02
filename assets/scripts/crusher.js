@@ -7,7 +7,8 @@
         this.id = 3;
         this.soulCost = 1;
 
-        this.init = function(){
+        this.init = function(_cell){
+            _super.init(_cell);
             return this;
         };
         this.trigger = function(){

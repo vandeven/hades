@@ -7,8 +7,10 @@
         this.moneyCost = 0;
         this.soulCost = 0;
         this.id = 0;
+        this.cell = null;
 
         this.init = function(){
+            this.cell = null;
             return this;
         };
         this.trigger = function(){
@@ -18,6 +20,7 @@
         };
         this.destroy = function(){
             console.log("destroying a building");
+            cell.attr("class", "cell");
             clearInterval(timerId);
             //Hades.map.remove(this);
         };

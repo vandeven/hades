@@ -18,6 +18,13 @@ var Hades = {
     init : function(){
         "use strict";
         var self = this;
+        self.grid = new HadesCollection();
+        //self.grid.fetch();
+
+        self.grid.on('add', self.placeOrUpdateBuildingEvent, self);
+        //self.grid.on('remove', self.destroyBuildingEvent, self);
+        //self.grid.forEach(self.placeOrUpdateBuildingAction);
+
         self.generateMap(50,35);
         self.generateMenu();
         self.generateAdvert();
@@ -52,7 +59,10 @@ var Hades = {
                     if(buildingId === Hades.buildingCrusherId){
                         self.destroyBuilding($(event.target));
                     }else {
-                        self.buildBuilding($(event.target), buildingId, "cell_player");
+                        debugger;
+                        var cell = Hades.grid.getCellId(event.x, event.y);
+                        var _building = getBuildingById(buildingId, cell);
+                        self.buildBuilding($(event.target), _building, "cell_player");
                     }
                 }
             });
@@ -67,25 +77,19 @@ var Hades = {
         Hades.view.setSoulCount(self.counters.souls);
         Hades.view.setMoneyCount(self.counters.money);
         self.disableBuildings();
-        self.hadesGrid = new HadesCollection();
-        //self.hadesGrid.fetch();
-        self.hadesGrid.on('add', self.placeOrUpdateBuildingEvent, self);
-        //self.hadesGrid.on('remove', self.destroyBuildingEvent, self);
-        //self.hadesGrid.forEach(self.placeOrUpdateBuildingAction);
     },
-    getBuildingById : function(id){
+    getBuildingById : function(id, cell){
         if(id === Hades.moneyBuildingId){
-            return new Hades.money().init();
+            return new Hades.money().init(cell);
         } else if(id === this.soulBuildingId){
-            return new Hades.soul().init();
+            return new Hades.soul().init(cell);
         } else if(id === this.buildingCrusherId){
-            return new Hades.crusher().init();
+            return new Hades.crusher().init(cell);
         }
         return null;
     },
-    buildBuilding : function(cell, buildingId, playerClass){
+    buildBuilding : function(cell, building, playerClass){
         var self = this;
-        var building = Hades.getBuildingById(buildingId);
 
         var coordinates = Hades.view.getCordinates(cell);
 
@@ -94,7 +98,7 @@ var Hades = {
             return;
         }
 
-        self.hadesGrid.create({
+        self.grid.create({
             x: coordinates[0],
             y: coordinates[1],
             building: buildingId,
