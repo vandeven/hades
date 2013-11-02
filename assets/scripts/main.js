@@ -64,9 +64,9 @@ var Hades = {
         Hades.view.setMoneyCount(self.counters.money);
         self.disableBuildings();
         self.hadesGrid = new HadesCollection();
-        self.hadesGrid.fetch({ wait: true });
-        self.hadesGrid.on("add", self.placeOrUpdateBuildingEvent);
-        self.hadesGrid.forEach(self.placeOrUpdateBuildingAction);
+        self.hadesGrid.fetch();
+        self.hadesGrid.on('add', self.placeOrUpdateBuildingEvent, self);
+        //self.hadesGrid.forEach(self.placeOrUpdateBuildingAction);
     },
     getBuildingById : function(id){
         if(id === Hades.moneyBuildingId){
@@ -131,7 +131,7 @@ var Hades = {
         Hades.decreaseSouls(building.soulCost);
 
         Hades.view.setBuilding(cell, cellData.building, cellData.player);
-        Hades.view.updateBuildingCost(cellData.building, cost);
+        Hades.view.updateBuildingCost(cellData.building, building.moneyCost, building.soulCost);
     },
     destroyBuilding : function(cell){
         var self = this;
