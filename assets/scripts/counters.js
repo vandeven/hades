@@ -14,6 +14,11 @@
         Hades.view.setMoneyCount(Hades.counters.money);
         Hades.enableBuildings();
     };
+    ha.increaseMoney = function(amount){
+        Hades.counters.money = Hades.counters.money + amount;
+        Hades.view.setMoneyCount(Hades.counters.money);
+        Hades.enableBuildings();
+    };
     ha.increaseSouls = function(){
         Hades.counters.souls++;
         Hades.view.setSoulCount(Hades.counters.souls);

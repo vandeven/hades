@@ -3,11 +3,12 @@
     height: 100px;
     float: left;
     border: 1px solid black;
-    position : relative;
+    position : absolute;
 }
 
 .buildings {
-    position : relative;
+    top:110px;
+    position : absolute;
     width: 210px;
     height: 800px;
     border: 1px solid black;
@@ -15,12 +16,18 @@
 }
 
 .grid {
-    position : relative;
+    position : absolute;
+    top: 110px;
+    left: 220px;
     border: 1px solid black;
     float: left;
     background-color: sandybrown;
 }
-
+.advert{
+    position : absolute;
+    right: 100px;
+    top: 110px;
+}
 .cell {
     width: 16px;
     height: 16px;
@@ -33,6 +40,7 @@
 .cell_opponent {
     background-color: red;
 }
+
 .moneyBuilding {
     background-image: url("../images/lawyer.png");
     background-repeat: no-repeat;
@@ -47,10 +55,6 @@
     background-image: url("../images/tractor.png");
     background-repeat: no-repeat;
 }
-.cell_droppable {
-    background-image: none;
-    background-color: pink;
-}
 .buildingMenu {
     position : relative;
     border: 1px solid black;
@@ -62,10 +66,12 @@
     background-color: grey;
     cursor: default;
 }
-
 .building {
     width: 16px;
     height: 16px;
     float: right;
 }
-
+.cell_droppable {
+    background-color: pink;
+    background-image: none;
+}
