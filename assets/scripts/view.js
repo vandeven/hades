@@ -16,7 +16,7 @@
             return this.cellPrefix + x + "_" + y;
         },
         getCordinates: function(cell) {
-            var id = cell.id;
+            var id = cell.attr("id");
             id = id.replace(this.cellPrefix, "");
             return id.split("_");
         },

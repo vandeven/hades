@@ -125,15 +125,13 @@ var Hades = {
         this.decreaseMoney(cost);
 
         //Gebouw plaatsen
-        /*var cordinates = Hades.view.getCordinates(cell);
-        var buildingAndPlayer = Hades.view.getBuildingAndPlayer(cell);
+        var cordinates = Hades.view.getCordinates(cell);
         self.hadesGrid.create({
-            id: cordinates[0] + "_" + cordinates[1],
             x: cordinates[0],
             y: cordinates[1],
-            building: buildingAndPlayer[0],
-            player: buildingAndPlayer[1]
-        });*/
+            building: buildingId,
+            player: playerClass
+        }, {wait: true});
 
         //View updaten
         Hades.view.setBuilding(cell, buildingId, playerClass);
