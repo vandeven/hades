@@ -9,8 +9,10 @@ var Hades = {
     },
     moneyBuildingId : "moneyBuilding",
     soulBuildingId : "soulBuilding",
+    buildings : ["moneyBuilding", "soulBuilding"],
 
     init : function(){
+        "use strict";
         var self = this;
         self.generateMap(79,35);
 
@@ -20,8 +22,10 @@ var Hades = {
                     //controleer locatie
                    var classList = $(cell).attr('class').split(/\s+/);
                    for(var i = 0; i<classList.length ; i++){
-                       if(classList[i] === self.moneyBuildingId || classList[i] === self.soulBuildingId){
-                           return false
+                       for(var building = 0; building < Hades.buildings.length; building++){
+                           if(classList[i] === Hades.buildings[building]){
+                               return false;
+                           }
                        }
                    }
                    return true;
@@ -32,16 +36,15 @@ var Hades = {
                 }
             });
         });
-        self.makeDraggable(self.moneyBuildingId);
-        self.makeDraggable(self.soulBuildingId);
-
+        for(var building = 0; building < Hades.buildings.length; building++){
+            self.makeDraggable(Hades.buildings[building]);
+        }
         Hades.view.setSoulCount(self.counters.souls);
         Hades.view.setMoneyCount(self.counters.money);
     },
     makeDraggable : function(id){
         $("#" + id).draggable({
-            snap: true,
-            distance : 5,
+            distance : 0,
             revert : "invalid",
             revertDuration : 200,
             zIndex : 10,
@@ -55,6 +58,13 @@ var Hades = {
     decreaseMoney : function(amount){
       this.counters.money =  this.counters.money - amount;
       this.view.setMoneyCount(this.counters.money);
+        for(var i = 0; i < Hades.buildings.length; i++){
+            var buildingId = Hades.buildings[i]
+            var building = this.getNewBuildingById(buildingId);
+            if(this.counters.money < building.moneyCost())          {
+                Hades.view.disableBuilding(buildingId);
+            }
+        }
     },
     getNewBuildingById : function(id){
         if(id === this.moneyBuildingId){

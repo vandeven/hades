@@ -46,6 +46,10 @@
     height: 20px;
     cursor: pointer;
 }
+.buildingMenuDisabled {
+    background-color: grey;
+    cursor: default;
+}
 
 .building {
     width: 16px;
