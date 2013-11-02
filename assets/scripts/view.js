@@ -41,9 +41,9 @@
             building.draggable("option", "disabled", true);
             building.addClass("buildingMenuDisabled");
         },
-        updateBuildingCost : function(buildingId, cost){
+        updateBuildingCost : function(buildingId, money, souls){
             var buildingCost = $("#" + buildingId + "Cost");
-            buildingCost.html(cost);
+            buildingCost.html(money + " " + souls);
         }
     };
 
