@@ -15,7 +15,17 @@
         },
         setBuilding : function(cell,buildingClass){
             cell.attr("class", "cell " + buildingClass);
+        },
+        enableBuilding : function(buildingId){
+            var building = $("#" + buildingId);
+            building.draggable("option", "disabled", false);
+            building.removeClass("buildingMenuDisabled");
+        },
+        disableBuilding : function(buildingId){
+            var building = $("#" + buildingId);
+            building.draggable("option", "disabled", true);
+            building.addClass("buildingMenuDisabled");
         }
-
     };
+
 }(Hades));
