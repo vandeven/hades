@@ -3,6 +3,7 @@
 <div id="newMessageForm">
     <textarea id="message" placeholder="Enter your message here:"></textarea>
     <button id="postMessageButton">Add Message</button>
+    <button id="clearButton">Clear my messages</button>
 </div>
 <div id="messagesContainer">
 </div>
@@ -55,8 +56,16 @@
 
     $("#postMessageButton").click(function(){
         var messageText = $("#message").val();
-        messages.create({message: messageText}, {wait: true});
+        messages.create({message: messageText, username: "<%= username %>"}, {wait: true});
         $("#message").val("");
+    });
+
+    $("#clearButton").click(function(){
+        var myMessages = messages.where({username: "<%= username %>"});
+        var length = myMessages.length;
+        for(var i = 0; i < length; i++) {
+            myMessages[i].destroy({wait: true});
+        }
     });
 
     _.templateSettings = {
@@ -66,9 +75,10 @@
         el: '#messagesContainer',
         initialize: function () {
             this.collection.on('add', this.render, this);
+            this.collection.on('remove', this.render, this);
             this.render();
         },
-        template: _.template("<div><p>{{ message }}</p></div>"),
+        template: _.template("<div><p><b>{{ username }}: </b>{{ message }}</p></div>"),
         render: function () {
             this.$el.html("");
             this.collection.each(function(msg){
