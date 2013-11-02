@@ -64,6 +64,8 @@ var Hades = {
         }
         Hades.view.setSoulCount(self.counters.souls);
         Hades.view.setMoneyCount(self.counters.money);
+        self.hadesGrid = new HadesCollection();
+        self.hadesGrid.fetch();
     },
     makeDraggable : function(id){
         $("#" + id).draggable({
@@ -123,6 +125,15 @@ var Hades = {
         this.decreaseMoney(cost);
 
         //Gebouw plaatsen
+        var cordinates = Hades.view.getCordinates(cell);
+        var buildingAndPlayer = Hades.view.getBuildingAndPlayer(cell);
+        self.hadesGrid.create({
+            id: cordinates[0] + "_" + cordinates[1],
+            x: cordinates[0],
+            y: cordinates[1],
+            building: buildingAndPlayer[0],
+            player: buildingAndPlayer[1]
+        });
 
         //View updaten
         Hades.view.setBuilding(cell, buildingId, playerClass);

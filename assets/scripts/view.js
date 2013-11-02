@@ -4,6 +4,8 @@
  */
 (function(ha){
     ha.view = {
+        cellPrefix: "cell_",
+        cellCSSClass : "cell ",
         setSoulCount : function(soulCount){
             $('#soulCount').html(soulCount);
         },
@@ -11,10 +13,20 @@
             $('#moneyCount').html(moneyCount);
         },
         getCellId : function(x,y){
-            return "cell_" + x + "_" + y;
+            return this.cellPrefix + x + "_" + y;
+        },
+        getCordinates: function(cell) {
+            var id = cell.id;
+            id = id.replace(this.cellPrefix, "");
+            return id.split("_");
         },
         setBuilding : function(cell,buildingClass, playerClass){
-            cell.attr("class", "cell " + buildingClass + " " + playerClass);
+            cell.attr("class", this.cellCSSClass + buildingClass + " " + playerClass);
+        },
+        getBuildingAndPlayer: function(cell) {
+          var attr = cell.attr("class");
+          attr = attr.replace(this.cellCSSClass);
+          return attr.split(" ");
         },
         enableBuilding : function(buildingId){
             var building = $("#" + buildingId);
