@@ -40,6 +40,6 @@ var HadesServerModel = Backbone.Model.extend({
 });
 
 var HadesCollection = SailsCollection.extend({
-    sailsCollection: 'gird',
+    sailsCollection: 'grid',
     model: HadesServerModel
 });
