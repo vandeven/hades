@@ -20,6 +20,7 @@ var Hades = {
         var self = this;
         self.generateMap(50,35);
         self.generateMenu();
+        self.generateAdvert();
 
         $('.cell').each(function(i, cell){
             $(cell).droppable({
