@@ -33,14 +33,15 @@ var Hades = {
                 },
                 hoverClass : "cell_droppable",
                 drop : function(event, building){
-                   self.buildBuilding($(event.target), $(building.draggable).attr("id"), "cell_player");
+                   self.buildBuilding($(event.target), $(building.draggable).attr("id"));
                 }
             });
         });
         for(var building = 0; building < Hades.buildings.length; building++){
             var buildingId = Hades.buildings[building];
             self.makeDraggable(buildingId);
-            Hades.view.updateBuildingCost(buildingId, self.getBuildingMoneyCostById(buildingId))
+            console.log(buildingId);
+            Hades.view.updateBuildingCost(buildingId, self.getBuildingCostById(buildingId))
         }
         Hades.view.setSoulCount(self.counters.souls);
         Hades.view.setMoneyCount(self.counters.money);
@@ -62,14 +63,14 @@ var Hades = {
       this.counters.money =  this.counters.money - amount;
       this.view.setMoneyCount(this.counters.money);
         for(var i = 0; i < Hades.buildings.length; i++){
-            var buildingId = Hades.buildings[i]
-            var buildingCost = this.getBuildingMoneyCostById(buildingId);
+            var buildingId = Hades.buildings[i];
+            var buildingCost = this.getBuildingCostById(buildingId);
             if(this.counters.money < buildingCost)          {
                 Hades.view.disableBuilding(buildingId);
             }
         }
     },
-    getBuildingMoneyCostById : function(id){
+    getBuildingCostById : function(id){
         if(id === Hades.moneyBuildingId){
             return 10;
         } else if(id === this.soulBuildingId){
@@ -81,41 +82,34 @@ var Hades = {
     },
     buildBuilding : function(cell, buildingId, playerClass){
         var self = this;
-        var buildingCost = self.getBuildingMoneyCostById(buildingId);
+        var cost = self.getBuildingCostById(buildingId);
 
         //controleer geld
-        if(this.counters.money < buildingCost){
+        if(this.counters.money < cost){
             return;
         }
         //Controleer server
 
         //Geld afschrijven
-        this.decreaseMoney(buildingCost);
+        this.decreaseMoney(cost);
 
         //Gebouw plaatsen
 
         //View updaten
         Hades.view.setBuilding(cell, buildingId, playerClass);
+        Hades.view.setBuilding(cell, buildingId);
 
-        //Cost updaten
-        Hades.view.updateBuildingCost(buildingId, self.getBuildingMoneyCostById(buildingId))
+        building.start();
 
-        if(buildingId === Hades.moneyBuildingId){
-            new Hades.money().init();
-        }
-        else if(buildingId === Hades.soulBuildingId){
-            new Hades.soul().init();
-        }
-
+        Hades.view.updateBuildingCost(buildingId, cost);
     },
     increaseMoney : function(){
         Hades.counters.money++;
         Hades.view.setMoneyCount(Hades.counters.money);
         this.view.setMoneyCount(this.counters.money);
         for(var i = 0; i < Hades.buildings.length; i++){
-            var buildingId = Hades.buildings[i]
-            var buildingCost = this.getBuildingMoneyCostById(buildingId);
-            if(this.counters.money >= buildingCost)          {
+            var buildingId = Hades.buildings[i];
+            if(this.counters.money >= building.getBuildingCostById(buildingId))          {
                 Hades.view.enableBuilding(buildingId);
             }
         }

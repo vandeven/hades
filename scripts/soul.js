@@ -4,16 +4,16 @@
 (function(ha){
     ha.soul = function(){
         this.moneyCost = 50;
+        this.id = 2;
 
         this.init = function(){
-            console.log("soul");
-            _super.init(10000);
+            _super.init();
+        };
+        this.start = function(){
+            _super.start(10000);
         };
         this.trigger = function(){
             Hades.increaseSouls();
-        };
-        this.moneyCost = function(){
-            return 50;
         };
     }.inherits(ha.building);
 }(Hades));
