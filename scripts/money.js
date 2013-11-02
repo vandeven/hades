@@ -3,10 +3,15 @@
  */
 (function(ha){
     ha.money = function(){
-        this.inheritFrom = Hades.building;
-        this.inheritFrom();
-        this.trigger = function(){
-            Hades.counters.money++;
+        this.init = function(){
+            _super.init(1);
         };
-    };
+        this.trigger = function(){
+            console.log("earning money");
+            ha.counters.money++;
+        };
+        this.moneyCost = function(){
+            return 10;
+        };
+    }.inherits(ha.building);
 }(Hades));

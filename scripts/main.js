@@ -5,8 +5,10 @@ var Hades = {
     map : [],
     counters : {
         souls : 0,
-        money : 0
+        money : 100
     },
+    moneyBuildingId : "moneyBuilding",
+    soulBuildingId : "soulBuilding",
 
     init : function(){
         var self = this;
@@ -14,15 +16,27 @@ var Hades = {
 
         $('.cell').each(function(i, cell){
             $(cell).droppable({
-                accept : ".buildingMenu",
+                accept : function(draggable){
+                    //controleer locatie
+                   var classList = $(cell).attr('class').split(/\s+/);
+                   for(var i = 0; i<classList.length ; i++){
+                       if(classList[i] === self.moneyBuildingId || classList[i] === self.soulBuildingId){
+                           return false
+                       }
+                   }
+                   return true;
+                },
                 hoverClass : "cell_droppable",
                 drop : function(event, building){
-                    Hades.view.setBuilding($(event.target), $(building.draggable).attr("id"));
+                   self.buildBuilding($(event.target), $(building.draggable).attr("id"));
                 }
             });
         });
-        self.makeDraggable("moneyBuilding");
-        self.makeDraggable("soulBuilding");
+        self.makeDraggable(self.moneyBuildingId);
+        self.makeDraggable(self.soulBuildingId);
+
+        Hades.view.setSoulCount(self.counters.souls);
+        Hades.view.setMoneyCount(self.counters.money);
     },
     makeDraggable : function(id){
         $("#" + id).draggable({
@@ -33,9 +47,39 @@ var Hades = {
             zIndex : 10,
             cursor : "pointer",
             cursorAt: { left: 8, top : 8 },
-             helper: function(){
+            helper: function(){
                 return $('<div style="border: 1px solid black;" class="building ' + id +'"></div>');
             }
         });
+    },
+    decreaseMoney : function(amount){
+      this.counters.money =  this.counters.money - amount;
+      this.view.setMoneyCount(this.counters.money);
+    },
+    getNewBuildingById : function(id){
+        if(id === this.moneyBuildingId){
+            return new Hades.money();
+        } else if(id === this.soulBuildingId){
+            return new Hades.soul();
+        }
+        return null;
+    },
+    buildBuilding : function(cell, buildingId){
+        var self = this;
+        var building = self.getNewBuildingById(buildingId);
+
+        //controleer geld
+        if(this.counters.money < building.moneyCost()){
+            return;
+        }
+        //Controleer server
+
+        //Geld afschrijven
+        this.decreaseMoney(building.moneyCost());
+
+        //Gebouw plaatsen
+
+        //View updaten
+        Hades.view.setBuilding(cell, buildingId);
     }
 };
