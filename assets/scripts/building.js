@@ -3,18 +3,21 @@
  */
 (function(ha){
     ha.building = function(){
-        var interval;
+        var timerId;
         this.moneyCost = 0;
         this.soulCost = 0;
         this.id = 0;
 
-        this.trigger = function(){
-        };
-        this.init = function(delay){
-            interval = setInterval(this.trigger, delay);
+        this.init = function(){
             return this;
         };
+        this.trigger = function(){
+        };
+        this.start = function(delay){
+            timerId = setInterval(this.trigger, delay);
+        }
         this.destroy = function(){
+            clearInterval(timerId);
             //Hades.map.remove(this);
         };
     }

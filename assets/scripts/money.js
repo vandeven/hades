@@ -7,11 +7,13 @@
         this.id = 1;
 
         this.init = function(){
-            _super.init(1000);
             return this;
         };
         this.trigger = function(){
             Hades.increaseMoney();
+        };
+        this.start = function(){
+            _super.start(1000);
         };
     }.inherits(ha.building);
 }(Hades));

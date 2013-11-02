@@ -7,10 +7,12 @@
         this.id = 3;
 
         this.init = function(){
-            _super.init(0);
             return this;
         };
         this.trigger = function(){
+        };
+        this.start = function(){
+            _super.start(1000);
         };
     }.inherits(ha.building);
 }(Hades));
