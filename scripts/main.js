@@ -37,7 +37,9 @@ var Hades = {
             });
         });
         for(var building = 0; building < Hades.buildings.length; building++){
-            self.makeDraggable(Hades.buildings[building]);
+            var buildingId = Hades.buildings[building];
+            self.makeDraggable(buildingId);
+            Hades.view.updateBuildingCost(buildingId, self.getBuildingCostById(buildingId))
         }
         Hades.view.setSoulCount(self.counters.souls);
         Hades.view.setMoneyCount(self.counters.money);
@@ -98,10 +100,19 @@ var Hades = {
         else if(buildingId === Hades.soulBuildingId){
             new Hades.soul().init();
         }
+        Hades.view.updateBuildingCost(buildingId, self.getBuildingCostById(buildingId))
     },
     increaseMoney : function(){
         Hades.counters.money++;
         Hades.view.setMoneyCount(Hades.counters.money);
+        this.view.setMoneyCount(this.counters.money);
+        for(var i = 0; i < Hades.buildings.length; i++){
+            var buildingId = Hades.buildings[i]
+            var buildingCost = this.getBuildingCostById(buildingId);
+            if(this.counters.money >= buildingCost)          {
+                Hades.view.enableBuilding(buildingId);
+            }
+        }
     },
     increaseSouls : function(){
         Hades.counters.souls++;

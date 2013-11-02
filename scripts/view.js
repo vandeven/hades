@@ -25,6 +25,10 @@
             var building = $("#" + buildingId);
             building.draggable("option", "disabled", true);
             building.addClass("buildingMenuDisabled");
+        },
+        updateBuildingCost : function(buildingId, cost){
+            var buildingCost = $("#" + buildingId + "Cost");
+            buildingCost.html(cost);
         }
     };
 

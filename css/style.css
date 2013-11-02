@@ -32,18 +32,20 @@
 }
 
 .moneyBuilding {
-    background-color: yellow;
+    background-image: url("../images/lawyer.png");
+    background-repeat: no-repeat;
 }
 
 .soulBuilding {
-    background-color: red;
+    background-image: url("../images/hellaltar.png");
+    background-repeat: no-repeat;
 }
 
 .buildingMenu {
     position : relative;
     border: 1px solid black;
     width: 200px;
-    height: 16px;
+    height: 20px;
     cursor: pointer;
 }
 .buildingMenuDisabled {
