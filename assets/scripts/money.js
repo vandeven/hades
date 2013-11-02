@@ -4,6 +4,7 @@
 (function(ha){
     ha.money = function(){
         this.moneyCost = 10;
+        this.soulCost = 0;
         this.id = 1;
         this.name = "moneyBuilding";
 

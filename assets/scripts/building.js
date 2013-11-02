@@ -3,12 +3,12 @@
  */
 (function(ha){
     ha.building = function(){
-        var timerId;
-        this.moneyCost = 0;
-        this.soulCost = 0;
-        this.id = 0;
-        this.cell = null;
-        this.name = "nothing";
+        timerId = null,
+        moneyCost = 0,
+        soulCost = 0,
+        id = 0,
+        cell = null,
+        name = "nothing";
 
         this.init = function(){
             return this;

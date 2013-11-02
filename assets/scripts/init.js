@@ -77,7 +77,7 @@
     };
     ha.placeOrUpdateBuildingEvent = function( event ) {
         var cellData = event.attributes;
-        if(cellData.x && cellData.y) {
+        if(cellData.x && cellData.y && cellData.building) {
             var cell = Hades.grid.where({ x: cellData.x, y: cellData.y });
             Hades.buildBuilding(cell, cellData.building, cellData.player);
         } else {
@@ -88,9 +88,9 @@
         var self = this;
 
         cell.building = self.getBuildingById(buildingId);
-        cell.building.cell = cell;
+      //  cell.building.cell = cell;
         //controleer geld
-        if(this.counters.money < cell.building.moneyCost || this.counters.soul < cell.building.soulCost){
+        if(self.counters.money < cell.building.moneyCost || self.counters.soul < cell.building.soulCost){
             return;
         }
 
