@@ -55,8 +55,9 @@ var Hades = {
         for(var building = 0; building < Hades.buildings.length; building++){
             var buildingId = Hades.buildings[building];
             self.makeDraggable(buildingId);
-            console.log(buildingId);
-            Hades.view.updateBuildingCost(buildingId, self.getBuildingCostById(buildingId), self.getBuildingSoulCostById(buildingId));
+            var gebouw = self.getBuildingById(buildingId);
+
+            Hades.view.updateBuildingCost(buildingId, gebouw.moneyCost, gebouw.soulCost);
         }
         Hades.view.setSoulCount(self.counters.souls);
         Hades.view.setMoneyCount(self.counters.money);
@@ -125,20 +126,20 @@ var Hades = {
     },
     buildBuilding : function(cell, buildingId, playerClass){
         var self = this;
-        var moneyCost = self.getBuildingCostById(buildingId);
-        var soulCost = self.getBuildingSoulCostById(buildingId);
+        var building = self.getBuildingById(buildingId);
+
         //controleer geld
-        if(this.counters.money < moneyCost){
+        if(this.counters.money < building.moneyCost || this.counters.soul < building.soulCost){
             return;
         }
         //Controleer server
 
         //Geld afschrijven
-        this.decreaseMoney(moneyCost);
-        this.decreaseSouls(soulCost);
+        self.decreaseMoney(building.moneyCost);
+        self.decreaseSouls(building.soulCost);
 
         //Gebouw plaatsen
-        self.getBuildingById(buildingId);
+        building.start();
         /*var cordinates = Hades.view.getCordinates(cell);
          var buildingAndPlayer = Hades.view.getBuildingAndPlayer(cell);
          self.hadesGrid.create({
@@ -151,11 +152,11 @@ var Hades = {
 
         //View updaten
         Hades.view.setBuilding(cell, buildingId, playerClass);
-        Hades.view.updateBuildingCost(buildingId, moneyCost, soulCost);
+        Hades.view.updateBuildingCost(buildingId, building.moneyCost, building.soulCost);
     },
     destroyBuilding : function(cell){
         var self = this;
-        var cost = self.getBuildingCostById(Hades.buildingCrusherId);
+        var cost = self.getBuildingById(Hades.buildingCrusherId).moneyCost;
         if(Hades.counters.money < cost){
             return;
         }
