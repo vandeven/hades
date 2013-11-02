@@ -43,9 +43,10 @@
                     if(buildingId === Hades.buildingCrusherId){
                         self.destroyBuilding($(event.target));
                     }else {
+                        var coordinates = Hades.view.getCordinates($(event.target));
                         self.grid.create({
-                            x: event.x,
-                            y: event.y,
+                            x: coordinates[0],
+                            y: coordinates[1],
                             building: buildingId,
                             player: "cell_player"
                         }, {wait: true});
