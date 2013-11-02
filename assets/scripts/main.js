@@ -62,6 +62,8 @@ var Hades = {
         Hades.view.setMoneyCount(self.counters.money);
         self.hadesGrid = new HadesCollection();
         self.hadesGrid.fetch();
+        self.hadesGrid.on('add', this.placeOrUpdateBuildingEvent);
+        self.hadesGrid.forEach(this.placeOrUpdateBuildingAction);
     },
     makeDraggable : function(id){
         $("#" + id).draggable({
@@ -132,20 +134,28 @@ var Hades = {
             building: buildingId,
             player: playerClass
         }, {wait: true});
-        self.getBuildingById(buildingId);
-        /*var cordinates = Hades.view.getCordinates(cell);
-         var buildingAndPlayer = Hades.view.getBuildingAndPlayer(cell);
-         self.hadesGrid.create({
-         id: cordinates[0] + "_" + cordinates[1],
-         x: cordinates[0],
-         y: cordinates[1],
-         building: buildingAndPlayer[0],
-         player: buildingAndPlayer[1]
-         });*/
+
+        //self.getBuildingById(buildingId);
 
         //View updaten
-        Hades.view.setBuilding(cell, buildingId, playerClass);
-        Hades.view.updateBuildingCost(buildingId, cost);
+        //Hades.view.setBuilding(cell, buildingId, playerClass);
+        //Hades.view.updateBuildingCost(buildingId, cost);
+    },
+    placeOrUpdateBuildingEvent: function( event ) {
+        var cellData = event.attributes;
+        if(cellData.x && cellData.y) {
+            Hades.placeOrUpdateBuilding( cellData );
+        } else {
+            console.log(cellData);
+        }
+    },
+    placeOrUpdateBuildingAction: function( cellData ) {
+        var cellId = Hades.view.getCellId(cellData.x, cellData.y);
+        var cell = $("#" + cellId);
+        var cost = Hades.getBuildingCostById(cellData.building);
+        Hades.decreaseMoney(cost);
+        Hades.view.setBuilding(cell, cellData.building, cellData.player);
+        Hades.view.updateBuildingCost(cellData.building, cost);
     },
     destroyBuilding : function(cell){
         var self = this;
