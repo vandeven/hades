@@ -10,7 +10,7 @@ var Hades = {
     moneyBuildingId : "moneyBuilding",
     soulBuildingId : "soulBuilding",
     buildingCrusherId : "buildingCrusher",
-    buildings : ["moneyBuilding", "soulBuilding", "buildingCrusher"],
+    buildings : [{ id : "moneyBuilding", name : "Lawyer"}, { id : "soulBuilding", name : "Soul Shrine"}, { id : "buildingCrusher", name : "Unholy Tractor"}],
 
     init : function(){
         "use strict";
@@ -25,7 +25,7 @@ var Hades = {
                     if(draggable.attr("id") === Hades.buildingCrusherId){
                         for(var i = 0; i<classList.length ; i++){
                             for(var building = 0; building < Hades.buildings.length; building++){
-                                if(classList[i] === Hades.buildings[building]){
+                                if(classList[i] === Hades.buildings[building].id){
                                     return true;
                                 }
                             }
@@ -34,7 +34,7 @@ var Hades = {
                     } else {
                         for(var i = 0; i<classList.length ; i++){
                             for(var building = 0; building < Hades.buildings.length; building++){
-                                if(classList[i] === Hades.buildings[building]){
+                                if(classList[i] === Hades.buildings[building].id){
                                     return false;
                                 }
                             }
@@ -54,7 +54,7 @@ var Hades = {
             });
         });
         for(var building = 0; building < Hades.buildings.length; building++){
-            var buildingId = Hades.buildings[building];
+            var buildingId = Hades.buildings[building].id;
             self.makeDraggable(buildingId);
             var gebouw = self.getBuildingById(buildingId);
 

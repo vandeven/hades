@@ -2,7 +2,7 @@
     ha.enableBuildings = function(){
         var self = this;
         for(var i = 0; i < Hades.buildings.length; i++){
-            var buildingId = Hades.buildings[i];
+            var buildingId = Hades.buildings[i].id;
             var building = self.getBuildingById(buildingId);
             if(self.counters.money >= building.moneyCost && self.counters.souls >= building.soulCost){
                 Hades.view.enableBuilding(buildingId);
@@ -12,19 +12,20 @@
     ha.disableBuildings = function(){
         var self = this;
         for(var i = 0; i < Hades.buildings.length; i++){
-            var buildingId = Hades.buildings[i];
+            var buildingId = Hades.buildings[i].id;
             var building = self.getBuildingById(buildingId);
             if(this.counters.money < building.moneyCost || self.counters.souls < building.soulCost){
                 Hades.view.disableBuilding(buildingId);
             }
         }
     };
-    ha.generateMenu = function(buildings){
+    ha.generateMenu = function(){
         var menu = $('#buildingMenu');
         var html = "";
-        for(var i = 0; i < buildings.length; i++){
-            var buildingId = buildings[i];
-            html += '<div class="buildingMenu" id="' + buildingId +'">Geldgebouw <span id="' + buildingId +'Cost"></span><div class="'+ buildingId +' building"></div></div>';
+        for(var i = 0; i < Hades.buildings.length; i++){
+            var buildingId = Hades.buildings[i].id;
+            var buildingName = Hades.buildings[i].name;
+            html += '<div class="buildingMenu" id="' + buildingId +'">'+ buildingName +' <span id="' + buildingId +'Cost"></span><div class="'+ buildingId +' building"></div></div>';
         }
         menu.append(html);
     }

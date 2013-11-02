@@ -43,7 +43,7 @@
         },
         updateBuildingCost : function(buildingId, money, souls){
             var buildingCost = $("#" + buildingId + "Cost");
-            buildingCost.html(money + "$ 0" + souls + "(S)");
+            buildingCost.html(money + "$, " + souls + "(S)");
         }
     };
 
