@@ -70,6 +70,16 @@ var Hades = {
             }
         }
     },
+    increaseMoney : function(){
+        Hades.counters.money++;
+        Hades.view.setMoneyCount(Hades.counters.money);
+        for(var i = 0; i < Hades.buildings.length; i++){
+            var buildingId = Hades.buildings[i];
+            if(this.counters.money >= this.getBuildingCostById(buildingId)){
+                Hades.view.enableBuilding(buildingId);
+            }
+        }
+    },
     getBuildingCostById : function(id){
         if(id === Hades.moneyBuildingId){
             return 10;
@@ -97,22 +107,7 @@ var Hades = {
 
         //View updaten
         Hades.view.setBuilding(cell, buildingId, playerClass);
-        Hades.view.setBuilding(cell, buildingId);
-
-        building.start();
-
         Hades.view.updateBuildingCost(buildingId, cost);
-    },
-    increaseMoney : function(){
-        Hades.counters.money++;
-        Hades.view.setMoneyCount(Hades.counters.money);
-        this.view.setMoneyCount(this.counters.money);
-        for(var i = 0; i < Hades.buildings.length; i++){
-            var buildingId = Hades.buildings[i];
-            if(this.counters.money >= building.getBuildingCostById(buildingId))          {
-                Hades.view.enableBuilding(buildingId);
-            }
-        }
     },
     increaseSouls : function(){
         Hades.counters.souls++;
