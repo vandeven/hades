@@ -19,4 +19,26 @@
             }
         }
     };
+    ha.generateMenu = function(buildings){
+        var menu = $('#buildingMenu');
+        var html = "";
+        for(var i = 0; i < buildings.length; i++){
+            var buildingId = buildings[i];
+            html += '<div class="buildingMenu" id="' + buildingId +'">Geldgebouw <span id="' + buildingId +'Cost"></span><div class="'+ buildingId +' building"></div></div>';
+        }
+        menu.append(html);
+    }
+    ha.makeDraggable = function(id){
+        $("#" + id).draggable({
+            distance : 0,
+            revert : "invalid",
+            revertDuration : 200,
+            zIndex : 10,
+            cursor : "pointer",
+            cursorAt: { left: 8, top : 8 },
+            helper: function(){
+                return $('<div style="border: 1px solid black;" class="building ' + id +'"></div>');
+            }
+        });
+    }
 }(Hades));

@@ -16,6 +16,7 @@ var Hades = {
         "use strict";
         var self = this;
         self.generateMap(50,35);
+        self.generateMenu(Hades.buildings);
 
         $('.cell').each(function(i, cell){
             $(cell).droppable({
@@ -63,19 +64,6 @@ var Hades = {
         Hades.view.setMoneyCount(self.counters.money);
         self.disableBuildings();
     },
-    makeDraggable : function(id){
-        $("#" + id).draggable({
-            distance : 0,
-            revert : "invalid",
-            revertDuration : 200,
-            zIndex : 10,
-            cursor : "pointer",
-            cursorAt: { left: 8, top : 8 },
-            helper: function(){
-                return $('<div style="border: 1px solid black;" class="building ' + id +'"></div>');
-            }
-        });
-    },
     getBuildingById : function(id){
         if(id === Hades.moneyBuildingId){
             return new Hades.money().init();
@@ -119,10 +107,12 @@ var Hades = {
     destroyBuilding : function(cell){
         var self = this;
         var cost = self.getBuildingById(Hades.buildingCrusherId).moneyCost;
-        if(Hades.counters.money < cost){
+        var soulCost = self.getBuildingById(Hades.buildingCrusherId).soulCost;
+        if(Hades.counters.money < cost || Hades.counters.souls < soulCost){
             return;
         }
         Hades.decreaseMoney(cost);
+        Hades.decreaseSouls(soulCost);
         Hades.view.destroyBuilding(cell);
     }
 };
