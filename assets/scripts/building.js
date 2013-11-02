@@ -10,8 +10,7 @@
         this.cell = null;
         this.name = "nothing";
 
-        this.init = function(_cell){
-            this.cell = _cell;
+        this.init = function(){
             return this;
         };
         this.trigger = function(){

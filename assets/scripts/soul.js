@@ -7,8 +7,7 @@
         this.id = 2;
         this.name = "soulBuilding";
 
-        this.init = function(_cell){
-            _super.init(_cell);
+        this.init = function(){
             return this;
         };
         this.trigger = function(){

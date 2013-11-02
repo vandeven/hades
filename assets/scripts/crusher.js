@@ -8,8 +8,7 @@
         this.soulCost = 1;
         this.name = "buildingCrusher";
 
-        this.init = function(_cell){
-            _super.init(_cell);
+        this.init = function(){
             return this;
         };
         this.trigger = function(){

@@ -53,7 +53,7 @@
         for(var building = 0; building < Hades.buildings.length; building++){
             var buildingId = Hades.buildings[building].id;
             self.makeDraggable(buildingId);
-            var gebouw = self.getBuildingById(buildingId, null);
+            var gebouw = self.getBuildingById(buildingId);
 
             Hades.view.updateBuildingCost(buildingId, gebouw.moneyCost, gebouw.soulCost);
         }
@@ -61,21 +61,22 @@
         Hades.view.setMoneyCount(self.counters.money);
         self.disableBuildings();
     };
-    ha.getBuildingById = function(id, cell){
+    ha.getBuildingById = function(id){
         "use strict";
         if(id === Hades.moneyBuildingId){
-            return new Hades.money().init(cell);
+            return new Hades.money().init();
         } else if(id === this.soulBuildingId){
-            return new Hades.soul().init(cell);
+            return new Hades.soul().init();
         } else if(id === this.buildingCrusherId){
-            return new Hades.crusher().init(cell);
+            return new Hades.crusher().init();
         }
         return null;
     };
     ha.buildBuilding = function(cell, buildingId, playerClass){
         var self = this;
 
-        cell.building = getBuildingById(buildingId, cell);
+        cell.building = getBuildingById(buildingId);
+        cell.building.cell = cell;
         //controleer geld
         if(this.counters.money < building.moneyCost || this.counters.soul < building.soulCost){
             return;
@@ -125,7 +126,7 @@
     };
     ha.destroyBuilding = function(cell){
         var self = this;
-        var building = self.getBuildingById(Hades.buildingCrusherId, null);
+        var building = self.getBuildingById(Hades.buildingCrusherId);
         var moneyCost = building.moneyCost;
         var soulCost = building.soulCost;
 
