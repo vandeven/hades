@@ -5,6 +5,9 @@
     ha.building = function(){
         var interval;
 
+        this.moneyCost = 0;
+        this.soulCost = 0;
+
         this.trigger = function(){
             alert("got the trigger working");
         };
@@ -15,10 +18,6 @@
 
         this.destroy = function(){
             //Hades.map.remove(this);
-        };
-
-        this.moneyCost = function(){
-            return 0;
         };
     }
 }(Hades));

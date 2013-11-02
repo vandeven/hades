@@ -3,6 +3,8 @@
  */
 (function(ha){
     ha.soul = function(){
+        this.moneyCost = 50;
+
         this.init = function(){
             console.log("soul");
             _super.init(10000);
