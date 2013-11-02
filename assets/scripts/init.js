@@ -122,7 +122,7 @@
     };
     ha.destroyBuilding = function(cell){
         var coordinates = Hades.view.getCordinates(cell);
-        var building = Hades.grid.where({ x: coordinates[0], y: coordinates[1] })[0].building;
+        var building = Hades.getBuildingById(Hades.buildingCrusherId);
         var moneyCost = building.moneyCost;
         var soulCost = building.soulCost;
 
@@ -132,6 +132,7 @@
 
         Hades.decreaseMoney(moneyCost);
         Hades.decreaseSouls(soulCost);
+        building = Hades.grid.where({ x: coordinates[0], y: coordinates[1] })[0].building;
         building.destroy();
         Hades.view.setBuilding(cell, "cell", "player");
     };
