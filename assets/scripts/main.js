@@ -76,28 +76,6 @@ var Hades = {
             }
         });
     },
-    decreaseMoney : function(amount){
-        var self = this;
-        self.counters.money =  this.counters.money - amount;
-        self.view.setMoneyCount(this.counters.money);
-        self.disableBuildings();
-    },
-    increaseMoney : function(){
-        Hades.counters.money++;
-        Hades.view.setMoneyCount(Hades.counters.money);
-        Hades.enableBuildings();
-    },
-    increaseSouls : function(){
-        Hades.counters.souls++;
-        Hades.view.setSoulCount(Hades.counters.souls);
-        Hades.enableBuildings();
-    },
-    decreaseSouls : function(amount){
-        var self = this;
-        self.counters.souls =  this.counters.souls - amount;
-        self.view.setSoulCount(this.counters.souls);
-        self.disableBuildings();
-    },
     getBuildingById : function(id){
         if(id === Hades.moneyBuildingId){
             return new Hades.money().init();

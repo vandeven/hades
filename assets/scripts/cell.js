@@ -7,8 +7,8 @@
 
         this.Building = null;
 
-        this.init = function(content){
-            this.Building = content;
+        this.init = function(_building){
+            this.Building = _building;
             return this;
         };
     };
