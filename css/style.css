@@ -47,6 +47,10 @@
     background-repeat: no-repeat;
 }
 
+.buildingCrusher {
+    background-color: darkorange;
+}
+
 .buildingMenu {
     position : relative;
     border: 1px solid black;
