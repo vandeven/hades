@@ -5,7 +5,7 @@ var Hades = {
     map : [],
     counters : {
         souls : 0,
-        money : 100
+        money : 200
     },
     moneyBuildingId : "moneyBuilding",
     soulBuildingId : "soulBuilding",
@@ -20,6 +20,20 @@ var Hades = {
         $('.cell').each(function(i, cell){
             $(cell).droppable({
                 accept : function(draggable){
+
+                    if(draggable.attr("id") === Hades.buildingCrusherId){
+                        //controleer locatie
+                        var classList = $(cell).attr('class').split(/\s+/);
+                        for(var i = 0; i<classList.length ; i++){
+                            for(var building = 0; building < Hades.buildings.length; building++){
+                                if(classList[i] === Hades.buildings[building]){
+                                    return true;
+                                }
+                            }
+                        }
+                        return false;
+                    }
+
                     //controleer locatie
                    var classList = $(cell).attr('class').split(/\s+/);
                    for(var i = 0; i<classList.length ; i++){
@@ -33,7 +47,12 @@ var Hades = {
                 },
                 hoverClass : "cell_droppable",
                 drop : function(event, building){
-                   self.buildBuilding($(event.target), $(building.draggable).attr("id"));
+                    var buildingId = $(building.draggable).attr("id");
+                    if(buildingId === Hades.buildingCrusherId){
+
+                    }else {
+                        self.buildBuilding($(event.target), buildingId, "cell_player");
+                    }
                 }
             });
         });
