@@ -27,16 +27,12 @@
     background-color: lawngreen;
 }
 
-.cell_droppable {
-    background-color: pink;
-}
 .cell_player{
     background-color: black;
 }
 .cell_opponent {
     background-color: red;
 }
-
 .moneyBuilding {
     background-image: url("../images/lawyer.png");
     background-repeat: no-repeat;
@@ -48,9 +44,13 @@
 }
 
 .buildingCrusher {
-    background-color: darkorange;
+    background-image: url("../images/tractor.png");
+    background-repeat: no-repeat;
 }
-
+.cell_droppable {
+    background-image: none;
+    background-color: pink;
+}
 .buildingMenu {
     position : relative;
     border: 1px solid black;
