@@ -5,7 +5,7 @@ var Hades = {
     map : [],
     counters : {
         souls : 1,
-        money : 200
+        money : 100
     },
     moneyBuildingId : "moneyBuilding",
     soulBuildingId : "soulBuilding",
@@ -17,6 +17,7 @@ var Hades = {
         var self = this;
         self.generateMap(50,35);
         self.generateMenu();
+        self.generateAdvert();
 
         $('.cell').each(function(i, cell){
             $(cell).droppable({
@@ -135,7 +136,7 @@ var Hades = {
     },
     destroyBuilding : function(cell){
         var self = this;
-        var cost = self.getBuildingCostById(Hades.buildingCrusherId);
+        var cost = Hades.getBuildingById(Hades.buildingCrusherId).moneyCost;
         if(Hades.counters.money < cost){
             return;
         }
