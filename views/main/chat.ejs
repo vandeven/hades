@@ -30,9 +30,9 @@
                         if (m === "create") {
                             this.add(msg.data);
                         } else if (m === "update") {
-                            this.get(msg.data.id).set(msg.data);
+                            this.get(msg.id).set(msg.data);
                         } else if (m === "destroy") {
-                            this.remove(this.get(msg.data.id));
+                            this.remove(this.get(msg.id));
                         }
                     }, this));
                 }, this));

@@ -1,0 +1,55 @@
+.titleBar{
+    width: 1800px;
+    height: 100px;
+    float: left;
+    border: 1px solid black;
+    position : relative;
+}
+
+.buildings {
+    position : relative;
+    width: 210px;
+    height: 800px;
+    border: 1px solid black;
+    float: left;
+}
+
+.grid {
+    position : relative;
+    border: 1px solid black;
+    float: left;
+    background-color: sandybrown;
+}
+
+.cell {
+    width: 16px;
+    height: 16px;
+    background-color: lawngreen;
+}
+
+.cell_droppable {
+    background-color: pink;
+}
+
+.moneyBuilding {
+    background-color: yellow;
+}
+
+.soulBuilding {
+    background-color: red;
+}
+
+.buildingMenu {
+    position : relative;
+    border: 1px solid black;
+    width: 200px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.building {
+    width: 16px;
+    height: 16px;
+    float: right;
+}
+
