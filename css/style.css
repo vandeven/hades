@@ -43,8 +43,12 @@
     position : relative;
     border: 1px solid black;
     width: 200px;
-    height: 20px;
+    height: 16px;
     cursor: pointer;
+}
+.buildingMenuDisabled {
+    background-color: grey;
+    cursor: default;
 }
 
 .building {

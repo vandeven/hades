@@ -5,23 +5,19 @@
     ha.building = function(){
         var interval;
 
-        this.init = function(delay){
-            interval = setInterval(
-                function(){
-                    trigger();
-                },
-                delay);
-        };
+        this.moneyCost = 0;
+        this.soulCost = 0;
 
         this.trigger = function(){
+            alert("got the trigger working");
+        };
+
+        this.init = function(delay){
+            interval = setInterval(this.trigger, delay);
         };
 
         this.destroy = function(){
             //Hades.map.remove(this);
-        };
-
-        this.moneyCost = function(){
-            return 0;
         };
     }
 }(Hades));

@@ -3,11 +3,14 @@
  */
 (function(ha){
     ha.soul = function(){
+        this.moneyCost = 50;
+
         this.init = function(){
-            _super.init(10);
+            console.log("soul");
+            _super.init(10000);
         };
         this.trigger = function(){
-            ha.counters.souls++;
+            Hades.increaseSouls();
         };
         this.moneyCost = function(){
             return 50;
