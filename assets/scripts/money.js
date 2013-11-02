@@ -15,13 +15,10 @@
         this.trigger = function(){
             var xpos =self.cell.attributes.x;
             var ypos =self.cell.attributes.y;
-            var buildingNorth =Hades.grid.findWhere({ x: parseInt(xpos, 10), y: parseInt(ypos,10) });
-            console.log(buildingNorth);
-            if(buildingNorth && buildingNorth.attributes.building){
-                console.log(buildingNorth.attributes.building);
-            }
-
-            Hades.increaseMoney(1);
+            var numberOfBuildings = Hades.countNearbyBuildings(xpos,ypos);
+            var moneyIncrease = 1 + numberOfBuildings ;
+            console.log("buildings:" + numberOfBuildings + " money:" + moneyIncrease );
+            Hades.increaseMoney(moneyIncrease);
         };
         this.start = function(){
             _super.start(1000);
