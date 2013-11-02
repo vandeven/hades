@@ -5,14 +5,9 @@
 (function(ha){
     ha.decreaseMoney = function(amount){
         var self = this;
-        self.counters.money =  this.counters.money - amount;
-        self.view.setMoneyCount(this.counters.money);
+        self.counters.money =  self.counters.money - amount;
+        self.view.setMoneyCount(self.counters.money);
         self.disableBuildings();
-    };
-    ha.increaseMoney = function(){
-        Hades.counters.money++;
-        Hades.view.setMoneyCount(Hades.counters.money);
-        Hades.enableBuildings();
     };
     ha.increaseMoney = function(amount){
         Hades.counters.money = Hades.counters.money + amount;
@@ -26,8 +21,8 @@
     };
     ha.decreaseSouls = function(amount){
         var self = this;
-        self.counters.souls =  this.counters.souls - amount;
-        self.view.setSoulCount(this.counters.souls);
+        self.counters.souls =  self.counters.souls - amount;
+        self.view.setSoulCount(self.counters.souls);
         self.disableBuildings();
     };
 }(Hades));
