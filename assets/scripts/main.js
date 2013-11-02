@@ -60,9 +60,8 @@ var Hades = {
                         self.destroyBuilding($(event.target));
                     }else {
                         debugger;
-                        var cell = Hades.grid.getCellId(event.x, event.y);
-                        var _building = getBuildingById(buildingId, cell);
-                        self.buildBuilding($(event.target), _building, "cell_player");
+                        var cell = Hades.grid.where({ x: event.x, y: event.y});
+                        self.buildBuilding(cell, buildingId, "cell_player");
                     }
                 }
             });
@@ -88,19 +87,18 @@ var Hades = {
         }
         return null;
     },
-    buildBuilding : function(cell, building, playerClass){
+    buildBuilding : function(cell, buildingId, playerClass){
         var self = this;
 
-        var coordinates = Hades.view.getCordinates(cell);
-
+        cell.building = getBuildingById(buildingId, cell);
         //controleer geld
         if(this.counters.money < building.moneyCost || this.counters.soul < building.soulCost){
             return;
         }
 
         self.grid.create({
-            x: coordinates[0],
-            y: coordinates[1],
+            x: cell.x,
+            y: cell.y,
             building: buildingId,
             player: playerClass
         }, {wait: true});
@@ -112,7 +110,6 @@ var Hades = {
 
         //Gebouw plaatsen
         building.start();
-
 
         //View updaten
         //Hades.view.setBuilding(cell, buildingId, playerClass);
@@ -143,7 +140,7 @@ var Hades = {
     },
     destroyBuilding : function(cell){
         var self = this;
-        var building = self.getBuildingById(Hades.buildingCrusherId);
+        var building = self.getBuildingById(Hades.buildingCrusherId, null);
         var moneyCost = building.moneyCost;
         var soulCost = building.soulCost;
 
