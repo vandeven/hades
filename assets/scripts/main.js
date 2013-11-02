@@ -70,6 +70,7 @@ var Hades = {
         self.hadesGrid = new HadesCollection();
         //self.hadesGrid.fetch();
         self.hadesGrid.on('add', self.placeOrUpdateBuildingEvent, self);
+        //self.hadesGrid.on('remove', self.destroyBuildingEvent, self);
         //self.hadesGrid.forEach(self.placeOrUpdateBuildingAction);
     },
     getBuildingById : function(id){
