@@ -25,7 +25,8 @@
         for(var i = 0; i < Hades.buildings.length; i++){
             var buildingId = Hades.buildings[i].id;
             var buildingName = Hades.buildings[i].name;
-            html += '<div class="buildingMenu" id="' + buildingId +'">'+ buildingName +' <span id="' + buildingId +'Cost"></span><div class="'+ buildingId +' building"></div></div>';
+            var buildingTitle = Hades.buildings[i].title;
+            html += '<div class="buildingMenu" id="' + buildingId +'" title="'+ buildingTitle +'">'+ buildingName +' <span id="' + buildingId +'Cost"></span><div class="'+ buildingId +' building"></div></div>';
         }
         menu.append(html);
     }
