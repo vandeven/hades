@@ -17,7 +17,7 @@ var Hades = {
                 accept : ".buildingMenu",
                 hoverClass : "cell_droppable",
                 drop : function(event, building){
-                    Hades.view.setBuilding($(event.target), $(building.draggable).attr("id"));
+                   self.buildBuilding($(event.target), $(building.draggable).attr("id"));
                 }
             });
         });
@@ -37,5 +37,13 @@ var Hades = {
                 return $('<div style="border: 1px solid black;" class="building ' + id +'"></div>');
             }
         });
+    },
+    buildBuilding : function(cell, building){
+        //controleer geld
+        //Controleer server
+        //Geld afschrijven
+        //Gebouw plaatsen
+        //View updaten
+        Hades.view.setBuilding(cell, building);
     }
 };

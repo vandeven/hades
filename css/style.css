@@ -19,12 +19,13 @@
     position : relative;
     border: 1px solid black;
     float: left;
+    background-color: sandybrown;
 }
 
 .cell {
     width: 16px;
     height: 16px;
-    background-color: green;
+    background-color: lawngreen;
 }
 
 .cell_droppable {
