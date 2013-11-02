@@ -129,6 +129,12 @@ var Hades = {
         Hades.view.updateBuildingCost(buildingId, cost);
     },
     destroyBuilding : function(cell){
+        var self = this;
+        var cost = self.getBuildingCostById(Hades.buildingCrusherId);
+        if(Hades.counters.money < cost){
+            return;
+        }
+        Hades.decreaseMoney(cost);
         Hades.view.destroyBuilding(cell);
     }
 };
