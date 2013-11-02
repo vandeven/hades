@@ -36,7 +36,7 @@ module.exports.routes = {
     view: 'home/index'
   }*/
     '/' : {
-        controller: 'main',
+        controller: 'hades',
         action: 'index'
     },
     '/signup' : {
