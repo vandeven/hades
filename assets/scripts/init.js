@@ -11,7 +11,7 @@
 
         self.generateMap(50,35);
         self.generateMenu();
-//        self.generateAdvert();
+        self.generateAdvert();
 
         $('.cell').each(function(i, cell){
             $(cell).droppable({
@@ -133,7 +133,7 @@
         Hades.decreaseSouls(soulCost);
         building.destroy();
         Hades.view.destroyBuilding(cell);
-    } ;
+    };
 }(Hades));
 
 
