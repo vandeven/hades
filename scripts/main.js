@@ -9,6 +9,7 @@ var Hades = {
     },
     moneyBuildingId : "moneyBuilding",
     soulBuildingId : "soulBuilding",
+
     buildings : ["moneyBuilding", "soulBuilding"],
 
     init : function(){
@@ -92,7 +93,10 @@ var Hades = {
         //Gebouw plaatsen
 
         //View updaten
-        Hades.view.setBuilding(cell, buildingId);
+        Hades.view.setBuilding(cell, buildingId, "cell_player");
+
+        //Cost updaten
+        Hades.view.updateBuildingCost(buildingId, self.getBuildingCostById(buildingId))
 
         if(buildingId === Hades.moneyBuildingId){
             new Hades.money().init();
@@ -100,7 +104,7 @@ var Hades = {
         else if(buildingId === Hades.soulBuildingId){
             new Hades.soul().init();
         }
-        Hades.view.updateBuildingCost(buildingId, self.getBuildingCostById(buildingId))
+
     },
     increaseMoney : function(){
         Hades.counters.money++;

@@ -30,6 +30,12 @@
 .cell_droppable {
     background-color: pink;
 }
+.cell_player{
+    background-color: black;
+}
+.cell_opponent {
+    background-color: red;
+}
 
 .moneyBuilding {
     background-image: url("../images/lawyer.png");
