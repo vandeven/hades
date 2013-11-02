@@ -10,12 +10,13 @@ var Hades = {
     moneyBuildingId : "moneyBuilding",
     soulBuildingId : "soulBuilding",
     buildingCrusherId : "buildingCrusher",
-    buildings : ["moneyBuilding", "soulBuilding", "buildingCrusher"],
+    buildings : [{ id : "moneyBuilding", name : "Lawyer", title : "Generates money for you"}, { id : "soulBuilding", name : "Soul Shrine", title : "Generates souls for you"}, { id : "buildingCrusher", name : "Unholy Tractor", title : "Destroys a building"}],
 
     init : function(){
         "use strict";
         var self = this;
         self.generateMap(50,35);
+        self.generateMenu();
 
         $('.cell').each(function(i, cell){
             $(cell).droppable({
@@ -24,7 +25,7 @@ var Hades = {
                     if(draggable.attr("id") === Hades.buildingCrusherId){
                         for(var i = 0; i<classList.length ; i++){
                             for(var building = 0; building < Hades.buildings.length; building++){
-                                if(classList[i] === Hades.buildings[building]){
+                                if(classList[i] === Hades.buildings[building].id){
                                     return true;
                                 }
                             }
@@ -53,7 +54,7 @@ var Hades = {
             });
         });
         for(var building = 0; building < Hades.buildings.length; building++){
-            var buildingId = Hades.buildings[building];
+            var buildingId = Hades.buildings[building].id;
             self.makeDraggable(buildingId);
             var gebouw = self.getBuildingById(buildingId);
 
