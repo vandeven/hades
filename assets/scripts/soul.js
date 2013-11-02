@@ -7,13 +7,13 @@
         this.id = 2;
 
         this.init = function(){
-            _super.init();
-        };
-        this.start = function(){
-            _super.start(10000);
+            return this;
         };
         this.trigger = function(){
             Hades.increaseSouls();
+        };
+        this.start = function(){
+            _super.start(10000);
         };
     }.inherits(ha.building);
 }(Hades));

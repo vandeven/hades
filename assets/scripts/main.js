@@ -132,6 +132,16 @@ var Hades = {
             building: buildingId,
             player: playerClass
         }, {wait: true});
+        self.getBuildingById(buildingId);
+        /*var cordinates = Hades.view.getCordinates(cell);
+         var buildingAndPlayer = Hades.view.getBuildingAndPlayer(cell);
+         self.hadesGrid.create({
+         id: cordinates[0] + "_" + cordinates[1],
+         x: cordinates[0],
+         y: cordinates[1],
+         building: buildingAndPlayer[0],
+         player: buildingAndPlayer[1]
+         });*/
 
         //View updaten
         Hades.view.setBuilding(cell, buildingId, playerClass);

@@ -3,29 +3,22 @@
  */
 (function(ha){
     ha.building = function(){
-        var interval;
-        var moneyCost = 0, soulCost = 0;
-        var id = 0;
+        var timerId;
+        this.moneyCost = 0;
+        this.soulCost = 0;
+        this.id = 0;
 
         this.init = function(){
             return this;
         };
-        this.start = function(delay){
-            interval = setInterval(this.trigger, delay);
-        };
         this.trigger = function(){
         };
+        this.start = function(delay){
+            timerId = setInterval(this.trigger, delay);
+        }
         this.destroy = function(){
+            clearInterval(timerId);
             //Hades.map.remove(this);
         };
-        this.getMoneyCost = function(){
-            return moneyCost;
-        };
-        this.getSoulCost = function(){
-            return soulCost;
-        };
-        this.getId = function(){
-            return id;
-        }
     }
 }(Hades));
