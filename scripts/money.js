@@ -4,11 +4,12 @@
 (function(ha){
     ha.money = function(){
         this.init = function(){
-            _super.init(1);
+            console.log("money");
+            _super.init(1000);
         };
         this.trigger = function(){
             console.log("earning money");
-            ha.counters.money++;
+            Hades.increaseMoney();
         };
         this.moneyCost = function(){
             return 10;

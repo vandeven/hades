@@ -10,7 +10,7 @@ var Hades = {
 
     init : function(){
         var self = this;
-        self.generateMap(79,35);
+        self.generateMap(50,35);
 
         $('.cell').each(function(i, cell){
             $(cell).droppable({
@@ -72,5 +72,15 @@ var Hades = {
 
         //View updaten
         Hades.view.setBuilding(cell, buildingId);
+
+        new Hades.money().init();
+    },
+    increaseMoney : function(){
+        Hades.counters.money++;
+        Hades.view.setMoneyCount(Hades.counters.money);
+    },
+    increaseSouls : function(){
+        Hades.counters.souls++;
+        Hades.view.setSoulCount(Hades.counters.souls);
     }
 };

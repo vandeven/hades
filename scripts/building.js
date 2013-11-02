@@ -5,15 +5,12 @@
     ha.building = function(){
         var interval;
 
-        this.init = function(delay){
-            interval = setInterval(
-                function(){
-                    trigger();
-                },
-                delay);
+        this.trigger = function(){
+            alert("got the trigger working");
         };
 
-        this.trigger = function(){
+        this.init = function(delay){
+            interval = setInterval(this.trigger, delay);
         };
 
         this.destroy = function(){
