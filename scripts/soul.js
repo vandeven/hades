@@ -7,4 +7,7 @@ Hades.soul = function(){
     this.trigger = function(){
         Hades.counters.souls++;
     };
+    this.moneyCost = function(){
+        return 50;
+    }
 };

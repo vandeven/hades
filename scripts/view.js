@@ -4,10 +4,10 @@
  */
 (function(ha){
     ha.view = {
-        updateSoulCount : function(soulCount){
+        setSoulCount : function(soulCount){
             $('#soulCount').html(soulCount);
         },
-        updateMoneyCount : function(moneyCount){
+        setMoneyCount : function(moneyCount){
             $('#moneyCount').html(moneyCount);
         },
         getCellId : function(x,y){

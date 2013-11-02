@@ -15,4 +15,8 @@ Hades.building = function(){
     this.destroy = function(){
         //Hades.map.remove(this);
     };
+
+    this.moneyCost = function(){
+        return 0;
+    }
 };

@@ -8,5 +8,8 @@
         this.trigger = function(){
             Hades.counters.money++;
         };
+        this.moneyCost = function(){
+            return 10;
+        }
     };
 }(Hades));
