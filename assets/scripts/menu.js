@@ -3,9 +3,8 @@
         var self = this;
         for(var i = 0; i < Hades.buildings.length; i++){
             var buildingId = Hades.buildings[i];
-            var buildingCost = self.getBuildingCostById(buildingId);
-            var soulCost = self.getBuildingSoulCostById(buildingId);
-            if(self.counters.money >= buildingCost && self.counters.souls >= soulCost){
+            var building = self.getBuildingById(buildingId);
+            if(self.counters.money >= building.moneyCost && self.counters.souls >= building.soulCost){
                 Hades.view.enableBuilding(buildingId);
             }
         }
@@ -14,9 +13,8 @@
         var self = this;
         for(var i = 0; i < Hades.buildings.length; i++){
             var buildingId = Hades.buildings[i];
-            var buildingCost = self.getBuildingCostById(buildingId);
-            var soulCost = self.getBuildingSoulCostById(buildingId);
-            if(this.counters.money < buildingCost || self.counters.souls < soulCost){
+            var building = self.getBuildingById(buildingId);
+            if(this.counters.money < building.moneyCost || self.counters.souls < building.soulCost){
                 Hades.view.disableBuilding(buildingId);
             }
         }
