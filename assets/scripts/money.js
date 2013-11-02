@@ -10,7 +10,7 @@
             return this;
         };
         this.trigger = function(){
-            Hades.increaseMoney();
+            Hades.increaseMoney(1);
         };
         this.start = function(){
             _super.start(1000);
