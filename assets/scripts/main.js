@@ -10,7 +10,7 @@ var Hades = {
     moneyBuildingId : "moneyBuilding",
     soulBuildingId : "soulBuilding",
     buildingCrusherId : "buildingCrusher",
-    buildings : [{ id : "moneyBuilding", name : "Lawyer"}, { id : "soulBuilding", name : "Soul Shrine"}, { id : "buildingCrusher", name : "Unholy Tractor"}],
+    buildings : [{ id : "moneyBuilding", name : "Lawyer", title : "Generates money for you"}, { id : "soulBuilding", name : "Soul Shrine", title : "Generates souls for you"}, { id : "buildingCrusher", name : "Unholy Tractor", title : "Destroys a building"}],
 
     init : function(){
         "use strict";
