@@ -8,9 +8,10 @@
         this.soulCost = 0;
         this.id = 0;
         this.cell = null;
+        this.name = "nothing";
 
-        this.init = function(){
-            this.cell = null;
+        this.init = function(_cell){
+            this.cell = _cell;
             return this;
         };
         this.trigger = function(){

@@ -5,9 +5,10 @@
     ha.soul = function(){
         this.moneyCost = 50;
         this.id = 2;
+        this.name = "soulBuilding";
 
-        this.init = function(){
-            _super.init();
+        this.init = function(_cell){
+            _super.init(_cell);
             return this;
         };
         this.trigger = function(){

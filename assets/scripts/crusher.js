@@ -6,6 +6,7 @@
         this.moneyCost = 100;
         this.id = 3;
         this.soulCost = 1;
+        this.name = "buildingCrusher";
 
         this.init = function(_cell){
             _super.init(_cell);

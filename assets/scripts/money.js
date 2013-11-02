@@ -5,6 +5,7 @@
     ha.money = function(){
         this.moneyCost = 10;
         this.id = 1;
+        this.name = "moneyBuilding";
 
         this.init = function(_cell){
             _super.init(_cell);
