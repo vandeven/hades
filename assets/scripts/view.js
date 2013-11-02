@@ -16,6 +16,9 @@
         setBuilding : function(cell,buildingClass, playerClass){
             cell.attr("class", "cell " + buildingClass + " " + playerClass);
         },
+        destroyBuilding : function(cell){
+            cell.attr("class", "cell");
+        },
         enableBuilding : function(buildingId){
             var building = $("#" + buildingId);
             building.draggable("option", "disabled", false);

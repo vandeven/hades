@@ -20,10 +20,8 @@ var Hades = {
         $('.cell').each(function(i, cell){
             $(cell).droppable({
                 accept : function(draggable){
-
+                    var classList = $(cell).attr('class').split(/\s+/);
                     if(draggable.attr("id") === Hades.buildingCrusherId){
-                        //controleer locatie
-                        var classList = $(cell).attr('class').split(/\s+/);
                         for(var i = 0; i<classList.length ; i++){
                             for(var building = 0; building < Hades.buildings.length; building++){
                                 if(classList[i] === Hades.buildings[building]){
@@ -32,24 +30,22 @@ var Hades = {
                             }
                         }
                         return false;
-                    }
-
-                    //controleer locatie
-                   var classList = $(cell).attr('class').split(/\s+/);
-                   for(var i = 0; i<classList.length ; i++){
-                       for(var building = 0; building < Hades.buildings.length; building++){
-                           if(classList[i] === Hades.buildings[building]){
-                               return false;
+                    } else {
+                       for(var i = 0; i<classList.length ; i++){
+                           for(var building = 0; building < Hades.buildings.length; building++){
+                               if(classList[i] === Hades.buildings[building]){
+                                   return false;
+                               }
                            }
                        }
-                   }
-                   return true;
+                       return true;
+                    }
                 },
                 hoverClass : "cell_droppable",
                 drop : function(event, building){
                     var buildingId = $(building.draggable).attr("id");
                     if(buildingId === Hades.buildingCrusherId){
-
+                        Hades.destroyBuilding($(event.target));
                     }else {
                         self.buildBuilding($(event.target), buildingId, "cell_player");
                     }
@@ -99,6 +95,10 @@ var Hades = {
             }
         }
     },
+    increaseSouls : function(){
+        Hades.counters.souls++;
+        Hades.view.setSoulCount(Hades.counters.souls);
+    },
     getBuildingCostById : function(id){
         if(id === Hades.moneyBuildingId){
             return 10;
@@ -128,8 +128,7 @@ var Hades = {
         Hades.view.setBuilding(cell, buildingId, playerClass);
         Hades.view.updateBuildingCost(buildingId, cost);
     },
-    increaseSouls : function(){
-        Hades.counters.souls++;
-        Hades.view.setSoulCount(Hades.counters.souls);
+    destroyBuilding : function(cell){
+        Hades.view.destroyBuilding(cell);
     }
 };
