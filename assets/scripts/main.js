@@ -67,7 +67,7 @@ var Hades = {
         Hades.view.setMoneyCount(self.counters.money);
         self.disableBuildings();
         self.hadesGrid = new HadesCollection();
-        self.hadesGrid.fetch();
+        //self.hadesGrid.fetch();
         self.hadesGrid.on('add', self.placeOrUpdateBuildingEvent, self);
         //self.hadesGrid.forEach(self.placeOrUpdateBuildingAction);
     },
