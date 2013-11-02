@@ -7,9 +7,8 @@
         this.id = 3;
 
         this.init = function(){
-            _super.init();
-        };
-        this.start = function(){
+            _super.init(0);
+            return this;
         };
         this.trigger = function(){
         };

@@ -7,25 +7,14 @@
         var moneyCost = 0, soulCost = 0;
         var id = 0;
 
-        this.init = function(){
-            return this;
-        };
-        this.start = function(delay){
-            interval = setInterval(this.trigger, delay);
-        };
         this.trigger = function(){
+        };
+        this.init = function(delay){
+            interval = setInterval(this.trigger, delay);
+            return this;
         };
         this.destroy = function(){
             //Hades.map.remove(this);
         };
-        this.getMoneyCost = function(){
-            return moneyCost;
-        };
-        this.getSoulCost = function(){
-            return soulCost;
-        };
-        this.getId = function(){
-            return id;
-        }
     }
 }(Hades));

@@ -59,7 +59,6 @@ var Hades = {
         for(var building = 0; building < Hades.buildings.length; building++){
             var buildingId = Hades.buildings[building];
             self.makeDraggable(buildingId);
-            console.log(buildingId);
             Hades.view.updateBuildingCost(buildingId, self.getBuildingCostById(buildingId))
         }
         Hades.view.setSoulCount(self.counters.souls);
@@ -109,6 +108,16 @@ var Hades = {
         }
         return null;
     },
+    getBuildingById : function(id){
+        if(id === Hades.moneyBuildingId){
+            return new Hades.money().init();
+        } else if(id === this.soulBuildingId){
+            return new Hades.soul().init();
+        } else if(id === this.buildingCrusherId){
+            return new Hades.crusher().init();
+        }
+        return null;
+    },
     buildBuilding : function(cell, buildingId, playerClass){
         var self = this;
         var cost = self.getBuildingCostById(buildingId);
@@ -123,6 +132,7 @@ var Hades = {
         this.decreaseMoney(cost);
 
         //Gebouw plaatsen
+        var building = self.getBuildingById(buildingId);
 
         //View updaten
         Hades.view.setBuilding(cell, buildingId, playerClass);
