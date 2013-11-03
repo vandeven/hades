@@ -2,10 +2,10 @@
     ha.init = function(){
         "use strict";
         var self = this;
-        self.network = new HadesCollection();
+        self.grid = new HadesCollection();
         //self.grid.fetch();
 
-        self.network.on('add', self.handleNetworkMessage, self);
+        self.grid.on('add', self.handleNetworkMessage, self);
         //self.network.on('remove', self.destroyBuildingEvent, self);
         //self.network.forEach(self.placeOrUpdateBuildingAction);
 
@@ -44,7 +44,7 @@
                         Hades.destroyBuilding($(event.target));
                     }else {
                         var coordinates = Hades.view.getCordinates($(event.target));
-                        self.network.create({
+                        self.grid.create({
                             x: coordinates[0],
                             y: coordinates[1],
                             building: buildingId,
@@ -91,7 +91,7 @@
         var self = this;
 
         var building = self.getBuildingById(cellData.building);
-        var cell = Hades.grid[parseInt(cellData.x)][parseInt(cellData.y)];
+        var cell = Hades.hadesMap[parseInt(cellData.x)][parseInt(cellData.y)];
         building.cell = cell;
         cell.building = building;
         //controleer geld
@@ -134,8 +134,8 @@
 
         Hades.decreaseMoney(moneyCost);
         Hades.decreaseSouls(soulCost);
-        building = Hades.grid[x][y].building;
-        Hades.grid[x][y] = new Hades.cell().init(x, y, null, Hades.playerName);
+        building = Hades.hadesMap[x][y].building;
+        Hades.hadesMap[x][y] = new Hades.cell().init(x, y, null, Hades.playerName);
         building.destroy();
         Hades.view.setBuilding(cell, "cell", "player");
     };

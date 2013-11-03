@@ -7,16 +7,16 @@
         var buildingWest = null;
 
         if(ypos-1 >= 0){
-          buildingNorth =Hades.grid[xpos][ypos-1];
+          buildingNorth =Hades.hadesMap[xpos][ypos-1];
         }
-        if(ypos + 1 < Hades.grid[xpos].length){
-          buildingSouth =Hades.grid[xpos][ypos+1];
+        if(ypos + 1 < Hades.hadesMap[xpos].length){
+          buildingSouth =Hades.hadesMap[xpos][ypos+1];
         }
         if(xpos -1 >=0){
-            buildingWest =Hades.grid[xpos-1][ypos];
+            buildingWest =Hades.hadesMap[xpos-1][ypos];
         }
-        if(xpos + 1< Hades.grid.length){
-            buildingEast =Hades.grid[xpos+1][ypos];
+        if(xpos + 1< Hades.hadesMap.length){
+            buildingEast =Hades.hadesMap[xpos+1][ypos];
         }
         var numberOfBuildings = 0;
         if(buildingNorth && buildingNorth.building){
