@@ -29,6 +29,10 @@
     float: left;
     color: white;
 }
+.playername{
+    position : absolute;
+    right: 100px;
+}
 .advert{
     position : absolute;
     right: 100px;

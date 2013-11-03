@@ -3,6 +3,7 @@
         "use strict";
         var self = this;
         self.grid = new HadesCollection();
+        self.player1 = true;
         self.grid.on('add', self.handleNetworkMessage, self);
         //self.grid.on('remove', self.destroyBuildingEvent, self);
         //self.grid.forEach(self.placeOrUpdateBuildingAction);
@@ -10,6 +11,13 @@
         self.generateMap(35,45);
         self.generateMenu();
         self.generateAdvert();
+        $("#player1").attr('checked', "checked");
+        $("#player1").click(function(){
+            Hades.player1 = true;
+        });
+        $("#player2").click(function(){
+            Hades.player1 = false;
+        });
         setInterval(function(){
                 Hades.grid.fetch();
           }, 1000);
@@ -46,7 +54,7 @@
                         x: coordinates[0],
                         y: coordinates[1],
                         building: buildingId,
-                        player: Hades.playerName
+                        player: Hades.player1
                     }, {wait: false});
                 }
             });
@@ -111,7 +119,7 @@
         var cellId = Hades.view.getCellId(building.cell.x, building.cell.y);
 
         if(building){
-            Hades.view.setBuilding($("#" + cellId), building.name, cellData.player === Hades.playerName ? "cell_player" : "cell_opponent");
+            Hades.view.setBuilding($("#" + cellId), building.name, cellData.player ? "cell_player" : "cell_opponent");
             Hades.view.updateBuildingCost(building.name, building.moneyCost, building.soulCost);
         }
         //View updaten
