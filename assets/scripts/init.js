@@ -118,10 +118,12 @@
         //Hades.view.updateBuildingCost(cellData.buildingId, cost);
     };
     ha.destroyBuilding = function(cell){
-        var coordinates = Hades.view.getCordinates(cell);
         var building = Hades.getBuildingById(Hades.buildingCrusherId);
         var moneyCost = building.moneyCost;
         var soulCost = building.soulCost;
+        var coordinates = Hades.view.getCordinates(cell);
+        var x = coordinates[0];
+        var y =  coordinates[1];
 
         if(Hades.counters.money < moneyCost || Hades.counters.souls < soulCost){
             return;
@@ -129,7 +131,8 @@
 
         Hades.decreaseMoney(moneyCost);
         Hades.decreaseSouls(soulCost);
-        building = Hades.grid.where({ x: coordinates[0], y: coordinates[1] })[0].building;
+        building = Hades.grid[x][y].building;
+        Hades.grid[x][y] = new Hades.cell().init(x, y, null, Hades.playerName);
         building.destroy();
         Hades.view.setBuilding(cell, "cell", "player");
     };
