@@ -4,7 +4,8 @@
         var self = this;
         self.grid = new HadesCollection();
         self.player1 = "true";
-        self.grid.on('add', self.handleNetworkMessage, self);
+        self.setupGameCounter = 0;
+
         //self.grid.on('remove', self.destroyBuildingEvent, self);
         //self.grid.forEach(self.placeOrUpdateBuildingAction);
 
@@ -19,7 +20,17 @@
             Hades.player1 = "false";
         });
         setInterval(function(){
-                Hades.grid.fetch();
+                Hades.grid.fetch({wait: true});
+
+            if(Hades.setupGameCounter < 2) {
+                Hades.setupGameCounter++;
+                if(Hades.setupGameCounter === 2) {
+                    while(Hades.grid.length != 0) {
+                        Hades.grid.pop().destroy({wait: true});
+                    }
+                    self.grid.on('add', self.handleNetworkMessage, self);
+                }
+            }
           }, 1000);
 
         $('.cell').each(function(i, cell){
