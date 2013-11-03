@@ -74,7 +74,10 @@
     };
     ha.handleNetworkMessage = function( event ) {
         var cellData = event.attributes;
-        if(cellData.x && cellData.y && cellData.building) {
+        if(cellData.building === Hades.buildingCrusherId){
+            Hades.destroyBuilding(cellData.x, cellData.y);
+        }
+        else if(cellData.x && cellData.y && cellData.building) {
             Hades.buildBuilding(cellData);
         } else {
             if(cellData.message === "you are"){
@@ -116,13 +119,10 @@
         //Hades.view.setBuilding(cell, cellData.buildingId, playerClass);
         //Hades.view.updateBuildingCost(cellData.buildingId, cost);
     };
-    ha.destroyBuilding = function(cell){
+    ha.destroyBuilding = function(x, y){
         var building = Hades.getBuildingById(Hades.buildingCrusherId);
         var moneyCost = building.moneyCost;
         var soulCost = building.soulCost;
-        var coordinates = Hades.view.getCordinates(cell);
-        var x = coordinates[0];
-        var y =  coordinates[1];
 
         if(Hades.counters.money < moneyCost || Hades.counters.souls < soulCost){
             return;
@@ -136,5 +136,3 @@
         Hades.view.setBuilding(cell, "cell", "player");
     };
 }(Hades));
-
-
