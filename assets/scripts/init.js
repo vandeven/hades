@@ -84,7 +84,7 @@
     ha.handleNetworkMessage = function( event ) {
         var cellData = event.attributes;
         if(cellData.building === Hades.buildingCrusherId){
-            Hades.destroyBuilding(cellData.x, cellData.y);
+            Hades.destroyBuilding(cellData.x, cellData.y, cellData.player);
         }
         else if(cellData.x && cellData.y && cellData.building) {
             Hades.buildBuilding(cellData);
@@ -114,8 +114,10 @@
         //Controleer server
 
         //Geld afschrijven
-        self.decreaseMoney(building.moneyCost);
-        self.decreaseSouls(building.soulCost);
+        if(cellData.player === Hades.player1){
+         self.decreaseMoney(building.moneyCost);
+         self.decreaseSouls(building.soulCost);
+        }
 
         //Gebouw plaatsen
         building.start();
@@ -133,7 +135,7 @@
         //Hades.view.setBuilding(cell, cellData.buildingId, playerClass);
         //Hades.view.updateBuildingCost(cellData.buildingId, cost);
     };
-    ha.destroyBuilding = function(x, y){
+    ha.destroyBuilding = function(x, y, player){
         var building = Hades.getBuildingById(Hades.buildingCrusherId);
         var moneyCost = building.moneyCost;
         var soulCost = building.soulCost;
@@ -142,8 +144,10 @@
             return;
         }
 
-        Hades.decreaseMoney(moneyCost);
-        Hades.decreaseSouls(soulCost);
+        if(player === Hades.player1){
+            Hades.decreaseMoney(moneyCost);
+            Hades.decreaseSouls(soulCost);
+        }
         Hades.hadesMap[x][y].building.destroy();
         Hades.hadesMap[x][y] = new Hades.cell().init(x, y, null, Hades.player1);
         var cell = $("#" + Hades.view.getCellId(x, y));
