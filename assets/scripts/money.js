@@ -13,7 +13,11 @@
             return this;
         };
         this.trigger = function(){
-            console.log("adding met interval:" + self.intervalId);
+            console.log("adding met interval:" + self.intervalId + " aan" + self.cell.player);
+            console.log(self.cell.player + ":" + Hades.player1 + ":" + (self.cell.player === Hades.player1));
+            if(!(self.cell.player === Hades.player1)){
+                return;
+            }
             var xpos = self.cell.x;
             var ypos = self.cell.y;
 

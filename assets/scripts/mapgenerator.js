@@ -9,7 +9,7 @@
           Hades.hadesMap[x] = new Array(xsize);
           html += '<tr>';
           for(var y = 0; y < ysize; y++) {
-              Hades.hadesMap[x][y] = new Hades.cell().init(x, y, null, Hades.playerName);
+              Hades.hadesMap[x][y] = new Hades.cell().init(x, y, null, Hades.player1);
               html += '<td id="'+Hades.view.getCellId(x, y) + '" class="cell"></td>';
           }
           html += '</tr>';

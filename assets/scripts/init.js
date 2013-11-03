@@ -104,6 +104,7 @@
         }
         var building = self.getBuildingById(cellData.building);
         building.cell = cell;
+        cell.player = cellData.player;
         cell.building = building;
         //controleer geld
         if(self.counters.money < building.moneyCost || self.counters.soul < building.soulCost){
@@ -144,7 +145,7 @@
         Hades.decreaseMoney(moneyCost);
         Hades.decreaseSouls(soulCost);
         Hades.hadesMap[x][y].building.destroy();
-        Hades.hadesMap[x][y] = new Hades.cell().init(x, y, null, Hades.playerName);
+        Hades.hadesMap[x][y] = new Hades.cell().init(x, y, null, Hades.player1);
         var cell = $("#" + Hades.view.getCellId(x, y));
         $('#destroyBuilding')[0].play();
         Hades.view.setBuilding(cell, "cell", "player");
