@@ -19,16 +19,16 @@
             buildingEast =Hades.hadesMap[xpos+1][ypos];
         }
         var numberOfBuildings = 0;
-        if(buildingNorth && buildingNorth.building){
+        if(buildingNorth && buildingNorth.building && buildingNorth.building.player == Hades.player1){
             numberOfBuildings++;
         }
-        if(buildingSouth && buildingSouth.building){
+        if(buildingSouth && buildingSouth.building && buildingSouth.building.player == Hades.player1){
             numberOfBuildings++;
         }
-        if(buildingEast && buildingEast.building){
+        if(buildingEast && buildingEast.building && buildingEast.building.player == Hades.player1){
             numberOfBuildings++;
         }
-        if(buildingWest && buildingWest.building){
+        if(buildingWest && buildingWest.building && buildingWest.building.player == Hades.player1){
             numberOfBuildings++;
         }
         return numberOfBuildings;
