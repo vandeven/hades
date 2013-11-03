@@ -118,9 +118,7 @@
         cell.player = cellData.player;
         cell.building = building;
         //controleer geld
-        if(self.counters.money < building.moneyCost || self.counters.soul < building.soulCost){
-            return;
-        }
+
 
         //Controleer server
 
