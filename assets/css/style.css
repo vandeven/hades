@@ -41,7 +41,7 @@
     opacity: 0.4;
 }
 .cell_player{
-    background-color: white;
+    background-color: blue;
     opacity: 1;
 }
 .cell_opponent {

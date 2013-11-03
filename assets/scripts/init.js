@@ -48,7 +48,7 @@
                             x: coordinates[0],
                             y: coordinates[1],
                             building: buildingId,
-                            player: "cell_player"
+                            player: Hades.playerName
                         }, {wait: true});
                     }
                 }
@@ -106,7 +106,7 @@
         var cellId = Hades.view.getCellId(building.cell.x, building.cell.y);
 
         if(building){
-            Hades.view.setBuilding($("#" + cellId), building.name, "cell_player");
+            Hades.view.setBuilding($("#" + cellId), building.name, cellData.player === Hades.playerName ? "cell_player" : "cell_opponent");
             Hades.view.updateBuildingCost(building.name, building.moneyCost, building.soulCost);
         }
         //View updaten
