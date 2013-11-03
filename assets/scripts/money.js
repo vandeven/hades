@@ -13,9 +13,9 @@
             return this;
         };
         this.trigger = function(){
-            var xpos =self.cell.attributes.x;
-            var ypos =self.cell.attributes.y;
-            debugger;
+            var xpos = self.cell.x;
+            var ypos = self.cell.y;
+
             var numberOfBuildings = Hades.countNearbyBuildings(xpos,ypos);
             var moneyIncrease = 1 + numberOfBuildings ;
             console.log("buildings:" + numberOfBuildings + " money:" + moneyIncrease );
