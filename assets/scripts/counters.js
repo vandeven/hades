@@ -18,6 +18,9 @@
         Hades.counters.souls++;
         Hades.view.setSoulCount(Hades.counters.souls);
         Hades.enableBuildings();
+        if(Hades.counters.souls === 100){
+            this.alert('You won!');
+        }
     };
     ha.decreaseSouls = function(amount){
         var self = this;

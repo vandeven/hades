@@ -5,11 +5,11 @@
         self.network = new HadesCollection();
         //self.grid.fetch();
 
-        self.network.on('add', self.placeOrUpdateBuildingEvent, self);
+        self.network.on('add', self.handleNetworkMessage, self);
         //self.network.on('remove', self.destroyBuildingEvent, self);
         //self.network.forEach(self.placeOrUpdateBuildingAction);
 
-        self.generateMap(45,35);
+        self.generateMap(35,45);
         self.generateMenu();
         self.generateAdvert();
 
@@ -76,11 +76,14 @@
         }
         return null;
     };
-    ha.placeOrUpdateBuildingEvent = function( event ) {
+    ha.handleNetworkMessage = function( event ) {
         var cellData = event.attributes;
         if(cellData.x && cellData.y && cellData.building) {
             Hades.buildBuilding(cellData);
         } else {
+            if(cellData.message === "you are"){
+                Hades.playerName = cellData.value;
+            }
             console.log(cellData);
         }
     };
