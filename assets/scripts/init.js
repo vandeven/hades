@@ -3,8 +3,6 @@
         "use strict";
         var self = this;
         self.grid = new HadesCollection();
-        //self.grid.fetch();
-
         self.grid.on('add', self.handleNetworkMessage, self);
         //self.grid.on('remove', self.destroyBuildingEvent, self);
         //self.grid.forEach(self.placeOrUpdateBuildingAction);
@@ -12,6 +10,9 @@
         self.generateMap(35,45);
         self.generateMenu();
         self.generateAdvert();
+        setInterval(function(){
+                Hades.grid.fetch();
+          }, 1000);
 
         $('.cell').each(function(i, cell){
             $(cell).droppable({
