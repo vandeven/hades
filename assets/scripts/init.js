@@ -87,8 +87,8 @@
     ha.buildBuilding = function(cellData){
         var self = this;
 
-        var building = self.getBuildingById(cellData.buildingId);
-        building.cell = Hades.grid[cellData.x][cellData.y];
+        var building = self.getBuildingById(cellData.building);
+        building.cell = Hades.grid[parseInt(cellData.x)][parseInt(cellData.y)];
         //controleer geld
         if(self.counters.money < building.moneyCost || self.counters.soul < building.soulCost){
             return;
@@ -102,11 +102,11 @@
 
         //Gebouw plaatsen
         building.start();
-
-        var cellId = Hades.view.getCellId(cell.attributes.x, cell.attributes.y);
+        
+        var cellId = Hades.view.getCellId(building.cell.x, building.cell.y);
 
         if(building){
-            Hades.view.setBuilding($("#" + cellId), building.name, playerClass);
+            Hades.view.setBuilding($("#" + cellId), building.name, "cell_player");
             Hades.view.updateBuildingCost(building.name, building.moneyCost, building.soulCost);
         }
         //View updaten
