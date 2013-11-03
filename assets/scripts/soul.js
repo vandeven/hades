@@ -13,6 +13,9 @@
             return this;
         };
         this.trigger = function(){
+            if(!(self.cell.player === Hades.player1)){
+                return;
+            }
             Hades.increaseSouls();
         };
         this.start = function(){
