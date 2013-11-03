@@ -4,8 +4,8 @@
 var Hades = {
     map : [],
     counters : {
-        souls : 1,
-        money : 200
+        souls : 0,
+        money : 0
     },
     playerName : "first",
     moneyBuildingId : "moneyBuilding",

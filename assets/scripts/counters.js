@@ -18,7 +18,7 @@
         Hades.counters.souls++;
         Hades.view.setSoulCount(Hades.counters.souls);
         Hades.enableBuildings();
-        if(Hades.counters.souls === 10){
+        if(Hades.counters.souls === 100){
             $('#victory')[0].play();
             alert('You won!');
         }
