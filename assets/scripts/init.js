@@ -121,6 +121,7 @@
         if(building){
             Hades.view.setBuilding($("#" + cellId), building.name, cellData.player ? "cell_player" : "cell_opponent");
             Hades.view.updateBuildingCost(building.name, building.moneyCost, building.soulCost);
+            $('#buildBuilding')[0].play();
         }
         //View updaten
         //Hades.view.setBuilding(cell, cellData.buildingId, playerClass);
@@ -142,6 +143,7 @@
         Hades.hadesMap[x][y].building.destroy();
         Hades.hadesMap[x][y] = new Hades.cell().init(x, y, null, Hades.playerName);
         var cell = $("#" + Hades.view.getCellId(x, y));
+        $('#destroyBuilding')[0].play();
         Hades.view.setBuilding(cell, "cell", "player");
     };
 }(Hades));
