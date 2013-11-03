@@ -3,12 +3,14 @@
  */
 (function(ha){
   ha.generateMap = function(xsize, ysize){
+      Hades.grid = new Array(ysize);
       var html = '<table>';
-      for(var y = 0; y < ysize; y++) {
+      for(var x = 0; x < xsize; x++) {
+          Hades.grid[x] = new Array(xsize);
           html += '<tr>';
-          for(var x = 0; x < xsize; x++) {
-              Hades.grid.add(new Hades.cell().init(x, y));
-              html += '<td id="'+ha.view.getCellId(x, y) + '" class="cell"></td>';
+          for(var y = 0; y < ysize; y++) {
+              Hades.grid[x][y] = new Hades.cell().init(x, y, null, Hades.playerName);
+              html += '<td id="'+Hades.view.getCellId(x, y) + '" class="cell"></td>';
           }
           html += '</tr>';
       }

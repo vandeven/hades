@@ -2,12 +2,12 @@
     ha.init = function(){
         "use strict";
         var self = this;
-        self.grid = new HadesCollection();
+        self.network = new HadesCollection();
         //self.grid.fetch();
 
-        self.grid.on('add', self.placeOrUpdateBuildingEvent, self);
-        //self.grid.on('remove', self.destroyBuildingEvent, self);
-        //self.grid.forEach(self.placeOrUpdateBuildingAction);
+        self.network.on('add', self.placeOrUpdateBuildingEvent, self);
+        //self.network.on('remove', self.destroyBuildingEvent, self);
+        //self.network.forEach(self.placeOrUpdateBuildingAction);
 
         self.generateMap(45,35);
         self.generateMenu();
@@ -44,7 +44,7 @@
                         Hades.destroyBuilding($(event.target));
                     }else {
                         var coordinates = Hades.view.getCordinates($(event.target));
-                        self.grid.create({
+                        self.network.create({
                             x: coordinates[0],
                             y: coordinates[1],
                             building: buildingId,
@@ -79,17 +79,16 @@
     ha.placeOrUpdateBuildingEvent = function( event ) {
         var cellData = event.attributes;
         if(cellData.x && cellData.y && cellData.building) {
-            var cell = Hades.grid.findWhere({ x: cellData.x, y: cellData.y });
-            Hades.buildBuilding(cell, cellData.building, cellData.player);
+            Hades.buildBuilding(cellData);
         } else {
             console.log(cellData);
         }
     };
-    ha.buildBuilding = function(cell, buildingId, playerClass){
+    ha.buildBuilding = function(cellData){
         var self = this;
 
-        var building = self.getBuildingById(buildingId);
-        building.cell = cell;
+        var building = self.getBuildingById(cellData.buildingId);
+        building.cell = Hades.grid[cellData.x][cellData.y];
         //controleer geld
         if(self.counters.money < building.moneyCost || self.counters.soul < building.soulCost){
             return;
@@ -111,10 +110,10 @@
             Hades.view.updateBuildingCost(building.name, building.moneyCost, building.soulCost);
         }
         //View updaten
-        //Hades.view.setBuilding(cell, buildingId, playerClass);
-        //Hades.view.updateBuildingCost(buildingId, building.moneyCost, building.soulCost);
-        //Hades.view.setBuilding(cell, buildingId, playerClass);
-        //Hades.view.updateBuildingCost(buildingId, cost);
+        //Hades.view.setBuilding(cell, cellData.buildingId, playerClass);
+        //Hades.view.updateBuildingCost(cellData.buildingId, building.moneyCost, building.soulCost);
+        //Hades.view.setBuilding(cell, cellData.buildingId, playerClass);
+        //Hades.view.updateBuildingCost(cellData.buildingId, cost);
     };
     ha.destroyBuilding = function(cell){
         var coordinates = Hades.view.getCordinates(cell);
@@ -151,7 +150,7 @@
             numberOfBuildings++;
         }
         return numberOfBuildings;
-    }
+    };
 }(Hades));
 
 

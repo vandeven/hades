@@ -7,6 +7,7 @@ var Hades = {
         souls : 1,
         money : 200
     },
+    playerName : "first",
     moneyBuildingId : "moneyBuilding",
     soulBuildingId : "soulBuilding",
     buildingCrusherId : "buildingCrusher",
