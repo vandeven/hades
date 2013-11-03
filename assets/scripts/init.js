@@ -88,7 +88,9 @@
         var self = this;
 
         var building = self.getBuildingById(cellData.building);
-        building.cell = Hades.grid[parseInt(cellData.x)][parseInt(cellData.y)];
+        var cell = Hades.grid[parseInt(cellData.x)][parseInt(cellData.y)];
+        building.cell = cell;
+        cell.building = building;
         //controleer geld
         if(self.counters.money < building.moneyCost || self.counters.soul < building.soulCost){
             return;
