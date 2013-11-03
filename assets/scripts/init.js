@@ -98,8 +98,11 @@
     ha.buildBuilding = function(cellData){
         var self = this;
 
-        var building = self.getBuildingById(cellData.building);
         var cell = Hades.hadesMap[parseInt(cellData.x)][parseInt(cellData.y)];
+        if(cell.building){
+            return;
+        }
+        var building = self.getBuildingById(cellData.building);
         building.cell = cell;
         cell.building = building;
         //controleer geld

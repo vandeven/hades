@@ -13,6 +13,7 @@
             return this;
         };
         this.trigger = function(){
+            console.log("adding met interval:" + self.intervalId);
             var xpos = self.cell.x;
             var ypos = self.cell.y;
 
