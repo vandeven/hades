@@ -21,7 +21,7 @@
         });
         setInterval(function(){
                 Hades.grid.fetch({wait: true});
-
+npm
             if(Hades.setupGameCounter < 2) {
                 Hades.setupGameCounter++;
                 if(Hades.setupGameCounter === 2) {
